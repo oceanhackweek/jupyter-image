@@ -1,11 +1,13 @@
 # jupyter-image for OceanhackWeek
 
-Repository for building OceanhackWeek 2020 [JupyterHub](https://jupyter.org/hub) environment (Docker Image) with [GitHub Actions CI](https://help.github.com/en/actions/automating-your-workflow-with-github-actions)
+Repository for building OceanhackWeek 2020
+[JupyterHub](https://jupyter.org/hub) environment (Docker Image) with
+[GitHub Actions CI](https://help.github.com/en/actions/automating-your-workflow-with-github-actions)
 
 ![Action Status](https://github.com/oceanhackweek/jupyter-image/workflows/MasterBuild/badge.svg)
-![Docker Pulls](https://img.shields.io/docker/pulls/uwhackweeks/OceanhackWeek)
+![Docker Pulls](https://img.shields.io/docker/pulls/uwhackweeks/oceanhackweek)
 
-Docker images publically available here: https://hub.docker.com/repository/docker/uwhackweeks/OceanhackWeek
+Docker images publically [available here](https://hub.docker.com/repository/docker/uwhackweeks/oceanhackweek).
 
 This repository contains configuration for the standard environment used during the OceanhackWeek 2020.
 When you log into the OceanhackWeek JupyterHub you are running a virtual machine with Ubuntu 18.04,
