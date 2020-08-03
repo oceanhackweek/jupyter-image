@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# labextensions
+jupyter labextension install --clean @jupyter-widgets/jupyterlab-manager \
+                                      @jupyterlab/server-proxy \
+                                      @jupyterlab/geojson-extension \
+                                      @pyviz/jupyterlab_pyviz \
+                                      jupyter-matplotlib \
+                                      jupyter-leaflet \
+                                      dask-labextension
+
+# Error installing vscode extensions, comment out for now:
+# Extension 'ms-python.python' not found.
+# Make sure you use the full extension ID, including the publisher, e.g.: ms-vscode.csharp
+# error undefined
+#code-server --install-extension ms-python.python
+
+# Install the VS code proxy (now from conda-forge in environment.yml)
+#pip install git+git://github.com/betatim/vscode-binder#egg=jupyter_vscode_proxy
+
+# EOF
