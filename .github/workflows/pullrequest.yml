@@ -1,0 +1,35 @@
+# Only test building images
+name: PullRequestBuild
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+
+env:
+  CONTAINER_NAME: uwhackweeks/oceanhackweek
+  GITHUB_SHA: ${{ github.sha }}
+  GITHUB_REF: ${{ github.ref }}
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build Image
+      run: |
+        docker build -t ${CONTAINER_NAME}:PR .
+
+    - name: Export Full Conda Environment
+      run: |
+        docker run ${CONTAINER_NAME}:PR conda list --explicit > conda-packages.txt
+
+    - name: Archive Conda Package List
+      uses: actions/upload-artifact@v1
+      with:
+        name: conda-packages
+        path: conda-packages.txt
