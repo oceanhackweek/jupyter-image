@@ -1,0 +1,6 @@
+vim
+emacs
+git
+graphviz
+zip
+unzip
