@@ -9,6 +9,7 @@ dependencies:
   - cdsapi
   - cf-units
   - colorcet
+  - ctd
   - datashader
   - erddapy
   - geolinks
