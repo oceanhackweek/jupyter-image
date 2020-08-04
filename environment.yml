@@ -3,12 +3,14 @@ channels:
   - conda-forge
 dependencies:
   - python=3.8
+  - pangeo-notebook=2020.06.03
   - argopy
   - bokeh
   - cartopy
   - cdsapi
   - cf-units
   - colorcet
+  - ctd
   - datashader
   - erddapy
   - geolinks
