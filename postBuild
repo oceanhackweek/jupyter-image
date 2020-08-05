@@ -9,6 +9,10 @@ jupyter labextension install --clean @jupyter-widgets/jupyterlab-manager \
                                       jupyter-leaflet \
                                       dask-labextension
 
+# Some extra r packages.
+Rscript -e "remotes::install_github('BigelowLab/ohwobpg')"
+Rscript -e "remotes::install_github('iobis/robis')"
+
 # Error installing vscode extensions, comment out for now:
 # Extension 'ms-python.python' not found.
 # Make sure you use the full extension ID, including the publisher, e.g.: ms-vscode.csharp
