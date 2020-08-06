@@ -64,6 +64,8 @@ dependencies:
   - r-raster
   - r-rastervis
   - r-remotes
+  - r-rgdal
+  - r-rgeos
   - r-rnaturalearth
   - r-rnaturalearthdata  
   - r-sf
