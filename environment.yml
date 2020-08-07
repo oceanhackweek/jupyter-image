@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.8
+  - pangeo-notebook=2020.06.03
   - argopy
   - bokeh
   - cartopy
@@ -34,7 +35,6 @@ dependencies:
   - palettable
   - pandas<1.1
   - panel
-  - pangeo-notebook=2020.06.03
   - param
   - podaacpy
   - pyoos
@@ -55,7 +55,6 @@ dependencies:
   - r-gridextra
   - r-gsw
   - r-irkernel
-  - r-leaflet
   - r-mapdata
   - r-maps
   - r-maptools
@@ -70,23 +69,25 @@ dependencies:
   - r-rgeos
   - r-rnaturalearth
   - r-rnaturalearthdata  
-  - r-sf
   - r-tidyverse
   - r-vegan
   - rpy2
   # robis deps
   - r-commonmark
-  - r-httr
   - r-dplyr
+  - r-ggplot2
+  - r-httpcache
+  - r-httr
   - r-jsonlite
   - r-leaflet
-  - r-ggplot2
-  - r-tidyr
-  - r-httpcache
-  - r-tibble
   - r-mapedit
-  - r-sf
+  - r-robis
+  - r-tibble
+  - r-tidyr
   - r-rlang
+  # cannot do latest r-sf for now, so no latest r-obis as well :-/
+  # - r-sf >=0.9_5
+  - r-sf
   # extras
   - conda-lock
   - emacs

@@ -1,5 +1,5 @@
 # platform: linux-64
-# env_hash: 726ab72cd2833c1c5d99784369b08b5afffd871c940c5918f0503673aa9f46ac
+# env_hash: a0cb3fa409c129d2745f00651c90e290a2e314fcbf22911d6b8fcb6b151aa83f
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2#19f9db5f4f1b7f5ef5f6d67207f25f38
@@ -457,7 +457,7 @@ https://conda.anaconda.org/conda-forge/noarch/requests-oauthlib-1.3.0-pyh9f0ad1d
 https://conda.anaconda.org/conda-forge/linux-64/s3transfer-0.3.3-py38h32f6830_1.tar.bz2#1a43e18b776ff854b491f5f67323f45c
 https://conda.anaconda.org/conda-forge/linux-64/siphon-0.8.0-py38_1002.tar.bz2#c629814c52b653be5fa4c5a77631c980
 https://conda.anaconda.org/conda-forge/noarch/sphinx-3.1.2-py_0.tar.bz2#c6d316f46dae5f2a046c4801f20fcd1e
-https://conda.anaconda.org/conda-forge/noarch/boto3-1.14.36-pyh9f0ad1d_0.tar.bz2#8ffcac27534f36cab3ec52a408378b76
+https://conda.anaconda.org/conda-forge/noarch/boto3-1.14.37-pyh9f0ad1d_0.tar.bz2#0a44ec6cdc5dc3b9cc1c42cc806aa6aa
 https://conda.anaconda.org/conda-forge/linux-64/cartopy-0.18.0-py38h172510d_0.tar.bz2#a4300d135a9877aefd7b5244e256740d
 https://conda.anaconda.org/conda-forge/noarch/colorcet-2.0.1-py_0.tar.bz2#aa65c1760b4ccc79d3be1fb3a7060de8
 https://conda.anaconda.org/conda-forge/linux-64/ipykernel-5.3.4-py38h23f93f0_0.tar.bz2#1fbf8f16e22d12866cb14877ebf72ae0
@@ -574,3 +574,4 @@ https://conda.anaconda.org/conda-forge/noarch/r-leaflet.extras-1.0.0-r36h6115d3f
 https://conda.anaconda.org/conda-forge/noarch/r-leafpm-0.1.0-r36h6115d3f_3.tar.bz2#8e3168821ab46ecc82b4f38e259e54d1
 https://conda.anaconda.org/conda-forge/linux-64/r-mapview-2.7.8-r36he1b5a44_1.tar.bz2#d107b5d67df45270b8805a18ece01bae
 https://conda.anaconda.org/conda-forge/noarch/r-mapedit-0.6.0-r36h6115d3f_1.tar.bz2#36c49e3b521d264376c80e0c24e2d3c2
+https://conda.anaconda.org/conda-forge/noarch/r-robis-2.3.9-r36h6115d3f_0.tar.bz2#90061bfc25b5972ce01fcc8fc7a3abcb
