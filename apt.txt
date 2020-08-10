@@ -5,3 +5,4 @@ graphviz
 zip
 unzip
 tzdata
+curl
