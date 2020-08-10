@@ -30,7 +30,6 @@ dependencies:
   - ioos_qc
   - ipyleaflet
   - jupyter
-  - jupyter-rsession-proxy
   - jupyter_contrib_nbextensions
   - jupyterlab
   - matplotlib-base
