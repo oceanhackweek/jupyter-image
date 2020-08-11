@@ -36,6 +36,7 @@ dependencies:
   - jupyter_contrib_nbextensions
   - jupyterlab
   - matplotlib-base
+  - nb_conda_kernels
   - nc-time-axis
   - netcdf4
   - numpy
