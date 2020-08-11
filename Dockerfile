@@ -10,3 +10,5 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV PATH=$PATH:/usr/lib/rstudio-server/bin
 USER $NB_USER
+RUN mkdir -p $HOME/my-conda-envs/
+COPY CONDARC $HOME/.condarc
