@@ -1,5 +1,5 @@
 # platform: linux-64
-# env_hash: 15536edf2c210ff587264fa2f097b4696011b2ea826f7b8f441e7dc7ad1f4085
+# env_hash: 7b0bbad18fed80edf2b16f8d2561bf40a2bca4152716441c3b76894256a94071
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2#19f9db5f4f1b7f5ef5f6d67207f25f38
@@ -264,6 +264,7 @@ https://conda.anaconda.org/conda-forge/linux-64/beautifulsoup4-4.9.1-py38h32f683
 https://conda.anaconda.org/conda-forge/linux-64/bottleneck-1.3.2-py38h8790de6_1.tar.bz2#5323d7cb96a14e8810e001638a8f7cc2
 https://conda.anaconda.org/conda-forge/linux-64/brotlipy-0.7.0-py38h1e0a361_1000.tar.bz2#da154c5d6d546f0b1e213707cc0e0162
 https://conda.anaconda.org/conda-forge/linux-64/cftime-1.2.1-py38h8790de6_0.tar.bz2#735ff40fc348a853ebb9ede65ae4264c
+https://conda.anaconda.org/conda-forge/noarch/colorspacious-1.1.2-pyh24bf2e0_0.tar.bz2#b73afa0d009a51cabd3ec99c4d2ef4f3
 https://conda.anaconda.org/conda-forge/linux-64/cryptography-3.0-py38h766eaa4_0.tar.bz2#e9a5632e43b7d26edcfab546e0a4e73b
 https://conda.anaconda.org/conda-forge/noarch/dask-core-2.17.2-py_0.tar.bz2#03fb0866c8cd250d1362220313a026b6
 https://conda.anaconda.org/conda-forge/noarch/datashape-0.5.4-py_1.tar.bz2#50ddfce434ea596fc4497085f403a9d5
@@ -318,6 +319,7 @@ https://conda.anaconda.org/conda-forge/linux-64/bokeh-2.1.1-py38h32f6830_0.tar.b
 https://conda.anaconda.org/conda-forge/noarch/branca-0.3.1-py_0.tar.bz2#d578d9c8f065254757b9fd22b617fef0
 https://conda.anaconda.org/conda-forge/noarch/certipy-0.1.3-py_0.tar.bz2#23486713ef5712923e7c57cae609b22e
 https://conda.anaconda.org/conda-forge/noarch/cf_xarray-0.2.1-pyh9f0ad1d_0.tar.bz2#0cb65384c6122afd26ccbdf84838eab7
+https://conda.anaconda.org/conda-forge/noarch/cmocean-2.0-py_3.tar.bz2#10f08c3aa77dc4080ebc1c03cb542f70
 https://conda.anaconda.org/conda-forge/noarch/descartes-1.1.0-py_4.tar.bz2#32fa3526c15250ccf353f1ce905f50b3
 https://conda.anaconda.org/conda-forge/linux-64/gdal-3.1.2-py38hb61cb63_1.tar.bz2#7d8844fdc8b25087ecea1ef4a4f544eb
 https://conda.anaconda.org/conda-forge/linux-64/graphviz-2.42.3-h0511662_0.tar.bz2#948953f31e65b438a1e520a741ccd9b4
@@ -569,6 +571,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-irkernel-1.1.1-r36h6115d3f_0.tar
 https://conda.anaconda.org/conda-forge/linux-64/r-isoband-0.2.2-r36h0357c0b_0.tar.bz2#7a0b07a45ca6e00f779918bac81be137
 https://conda.anaconda.org/conda-forge/linux-64/r-readxl-1.3.1-r36hde08347_4.tar.bz2#c6378a8a0aa07c57ad0a5652fa815006
 https://conda.anaconda.org/conda-forge/linux-64/r-tidyr-1.1.1-r36h0357c0b_1.tar.bz2#c5ad4139dff37059a057158d84c40dc4
+https://conda.anaconda.org/conda-forge/noarch/movingpandas-0.2rc1-py_0.tar.bz2#dd39b0aa9bce8a1ca012dfebc796a664
 https://conda.anaconda.org/conda-forge/noarch/r-broom-0.7.0-r36h6115d3f_0.tar.bz2#52f7cde66b6f845ffe24699155600cc1
 https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.3.2-r36h6115d3f_0.tar.bz2#831e6f24739fccf44f2750d538227b58
 https://conda.anaconda.org/conda-forge/linux-64/r-oce-1.2_0-r36hc99cbb1_1.tar.bz2#13416c4dc91a4a94430ee1fbb38309c2
