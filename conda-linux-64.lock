@@ -1,5 +1,5 @@
 # platform: linux-64
-# env_hash: 3a5ad23665b1496a39f0d5eecb55a7bff7ec762e7bcd0e799d4ca3d15b1783f2
+# env_hash: 896cca9be0430f1f202657bb84531d45321d6b7b841c9f21db33646f613a7f9c
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2#19f9db5f4f1b7f5ef5f6d67207f25f38
@@ -402,7 +402,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-permute-0.9_5-r36h6115d3f_3.tar.
 https://conda.anaconda.org/conda-forge/noarch/r-pkgconfig-2.0.3-r36h6115d3f_1.tar.bz2#d8c0bd8e2b4de78157be2866e6cc320b
 https://conda.anaconda.org/conda-forge/linux-64/r-png-0.1_7-r36hcdcec82_1004.tar.bz2#05c31313e7c70e1f248a1f7ddb8f3773
 https://conda.anaconda.org/conda-forge/noarch/r-praise-1.0.0-r36h6115d3f_1004.tar.bz2#c1c81352a7102756ef1fa1838d25ad95
-https://conda.anaconda.org/conda-forge/linux-64/r-ps-1.3.3-r36hcdcec82_0.tar.bz2#dbc8d7467895663e014ecdd6d8ff1bc0
+https://conda.anaconda.org/conda-forge/linux-64/r-ps-1.3.4-r36hcdcec82_0.tar.bz2#2d0af4461d9e20458e3cced9c3d2b018
 https://conda.anaconda.org/conda-forge/noarch/r-r6-2.4.1-r36h6115d3f_1.tar.bz2#ac6356d09a1861a52aea8c93eb513e9d
 https://conda.anaconda.org/conda-forge/noarch/r-rapidjsonr-1.2.0-r36h6115d3f_1.tar.bz2#fa598546a4bbcc82786cf1f3dc5dc564
 https://conda.anaconda.org/conda-forge/noarch/r-rcolorbrewer-1.1_2-r36h6115d3f_1003.tar.bz2#2ba73e5efd87bf6c2e483f6cdedeae91
@@ -598,6 +598,6 @@ https://conda.anaconda.org/conda-forge/noarch/r-tidyverse-1.3.0-r36h6115d3f_2.ta
 https://conda.anaconda.org/conda-forge/noarch/r-leafem-0.1.3-r36h6115d3f_0.tar.bz2#02984b081bc0ff7c527d306e4236ab5f
 https://conda.anaconda.org/conda-forge/noarch/r-leaflet.extras-1.0.0-r36h6115d3f_1004.tar.bz2#c622e382d4e6c7ae0864c79d04fdd7e4
 https://conda.anaconda.org/conda-forge/noarch/r-leafpm-0.1.0-r36h6115d3f_3.tar.bz2#8e3168821ab46ecc82b4f38e259e54d1
-https://conda.anaconda.org/conda-forge/linux-64/r-mapview-2.7.8-r36he1b5a44_1.tar.bz2#d107b5d67df45270b8805a18ece01bae
+https://conda.anaconda.org/conda-forge/linux-64/r-mapview-2.9.0-r36he1b5a44_0.tar.bz2#790bf5768281fb59f3344298614e77ff
 https://conda.anaconda.org/conda-forge/noarch/r-mapedit-0.6.0-r36h6115d3f_1.tar.bz2#36c49e3b521d264376c80e0c24e2d3c2
 https://conda.anaconda.org/conda-forge/noarch/r-robis-2.3.9-r36h6115d3f_0.tar.bz2#90061bfc25b5972ce01fcc8fc7a3abcb

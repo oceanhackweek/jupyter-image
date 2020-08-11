@@ -78,7 +78,7 @@ dependencies:
   - r-oce
   - r-patchwork
   - r-plotly
-  - r-ps
+  - r-ps>=1.3.4
   - r-raster
   - r-rastervis
   - r-remotes
