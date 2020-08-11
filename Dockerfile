@@ -10,3 +10,5 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV PATH=$PATH:/usr/lib/rstudio-server/bin
 USER $NB_USER
+
+COPY CONDARC /tmp/.condarc

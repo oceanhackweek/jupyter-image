@@ -13,6 +13,7 @@ dependencies:
   - cf_xarray
   - colorcet
   - compilers
+  - cotede
   - ctd
   - dask
   - datashader
@@ -35,9 +36,11 @@ dependencies:
   - jupyter_contrib_nbextensions
   - jupyterlab
   - matplotlib-base
+  - nb_conda_kernels
   - nc-time-axis
   - netcdf4
   - numpy
+  - oceansdb
   - palettable
   - pandas<1.1
   - panel
@@ -60,6 +63,8 @@ dependencies:
   # R packages
   - r-base
   - r-ape
+  - r-bitops
+  - r-catools
   - r-cowplot
   - r-crul
   - r-gridextra
@@ -73,6 +78,7 @@ dependencies:
   - r-oce
   - r-patchwork
   - r-plotly
+  - r-ps>=1.3.4
   - r-raster
   - r-rastervis
   - r-remotes
