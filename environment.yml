@@ -63,6 +63,8 @@ dependencies:
   # R packages
   - r-base
   - r-ape
+  - r-bitops
+  - r-catools
   - r-cowplot
   - r-crul
   - r-gridextra
@@ -76,6 +78,7 @@ dependencies:
   - r-oce
   - r-patchwork
   - r-plotly
+  - r-ps
   - r-raster
   - r-rastervis
   - r-remotes
