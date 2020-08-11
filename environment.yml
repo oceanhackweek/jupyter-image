@@ -7,7 +7,7 @@ dependencies:
   - argopy
   - bokeh
   - bottleneck
-  - cartopy <0.18
+  - cartopy
   - cdsapi
   - cf-units
   - cf_xarray
@@ -31,10 +31,7 @@ dependencies:
   - ioos-tools
   - ioos_qc
   - ipyleaflet
-  - jupyter
   - jupyter-rsession-proxy
-  - jupyter_contrib_nbextensions
-  - jupyterlab
   - matplotlib-base
   - nb_conda_kernels
   - nc-time-axis
@@ -46,8 +43,9 @@ dependencies:
   - panel
   - param
   - podaacpy
+  - proj >=7
   - pyoos
-  - rasterio
+  # - rasterio
   - requests
   - retrying
   - rise
@@ -86,7 +84,7 @@ dependencies:
   - r-raster
   - r-rastervis
   - r-remotes
-  - r-rgdal
+  - r-rgdal>=1.5
   - r-rgeos
   - r-rnaturalearth
   - r-rnaturalearthdata
@@ -107,9 +105,7 @@ dependencies:
   - r-tibble
   - r-tidyr
   - r-rlang
-  # cannot do latest r-sf for now, so no latest r-obis as well :-/
-  # - r-sf >=0.9_5
-  - r-sf
+  - r-sf >=0.9_5
   # extras
   - conda-lock
   - emacs
