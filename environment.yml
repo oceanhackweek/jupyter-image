@@ -11,6 +11,7 @@ dependencies:
   - cdsapi
   - cf-units
   - cf_xarray
+  - cmocean
   - colorcet
   - compilers
   - cotede
@@ -33,6 +34,7 @@ dependencies:
   - ipyleaflet
   - jupyter-rsession-proxy
   - matplotlib-base
+  - movingpandas
   - nb_conda_kernels
   - nc-time-axis
   - netcdf4
