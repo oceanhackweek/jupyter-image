@@ -20,6 +20,7 @@ dependencies:
   - datashader
   - descartes
   - erddapy
+  - fastparquet
   - ffmpeg
   - geolinks
   - geopandas
@@ -47,6 +48,7 @@ dependencies:
   - podaacpy
   - proj >=7
   - pyoos
+  - python-snappy
   # - rasterio
   - requests
   - retrying
