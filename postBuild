@@ -12,6 +12,7 @@ jupyter labextension install --clean @jupyter-widgets/jupyterlab-manager \
 # Some extra r packages.
 Rscript -e "remotes::install_github('BigelowLab/ohwobpg')"
 Rscript -e "remotes::install_github('https://github.com/BigelowLab/rasf')"
+Rscript -e "install.packages('biomod2', repos = 'https://cloud.r-project.org/')"
 # Rscript -e "remotes::install_github('iobis/robis')"
 
 #  This is a test if the right proj library is loaded.
