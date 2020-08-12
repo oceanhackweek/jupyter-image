@@ -110,7 +110,30 @@ dependencies:
   - r-tidyr
   - r-rlang
   - r-sf >=0.9_5
+  # biomod2 deps
+  - r-mass
+  # - r-presenceabsence
+  - r-abind
+  - r-caret
+  - r-checkmate
+  - r-dismo
+  - r-doparallel
+  - r-earth
+  - r-foreach
+  - r-gbm >=2.1.3
+  - r-ggplot2
+  - r-lattice
+  # - r-maxnet
+  - r-mda
+  - r-nnet
+  - r-proc >=1.15.0
+  - r-purrr
+  - r-randomforest
+  - r-reshape
+  - r-rpart
+  - r-sp
   # extras
+  - r-glmnet
   - conda-lock
   - emacs
   - git
