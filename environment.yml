@@ -142,6 +142,7 @@ dependencies:
   - r-robis
   - r-rpart
   - r-rsqlite
+  - r-rstackdeque
   - r-s2
   - r-sf >=0.9_5
   - r-sp

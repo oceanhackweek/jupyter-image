@@ -48,7 +48,7 @@ jobs:
     - name: Build Docker Image
       uses: docker/build-push-action@v2.6.1
       with:
-        tags: ${CONTAINER_NAME}:latest,${CONTAINER_NAME}:${{env.DOCKER_TAG}}
+        tags: ${{ env.CONTAINER_NAME }}:latest,${{ env.CONTAINER_NAME }}:${{env.DOCKER_TAG}}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         load: true
