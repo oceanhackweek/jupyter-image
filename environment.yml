@@ -64,6 +64,7 @@ dependencies:
   - seawater
   - shapely
   - siphon
+  - tensorflow
   - xarray
   - xgcm
   - xlrd
@@ -141,12 +142,15 @@ dependencies:
   - r-robis
   - r-rpart
   - r-rsqlite
+  - r-s2
   - r-sf >=0.9_5
   - r-sp
   - r-tibble
   - r-tidyr
   - r-tidyverse
   - r-tiff
+  - r-tzdb
   - r-vegan
+  - r-vroom
   - r-xml2
   - rpy2

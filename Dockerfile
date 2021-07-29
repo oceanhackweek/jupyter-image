@@ -70,8 +70,8 @@ USER ${NB_USER}
 
 # Install BigelowLab dev R libs
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
-RUN Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies = NA, upgrade_dependencies = FALSE)" && \
-    Rscript -e "remotes::install_github('BigelowLab/rasf', dependencies = NA, upgrade_dependencies = FALSE)"
+RUN Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    Rscript -e "remotes::install_github('BigelowLab/rasf', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)"
 
 # TEST
 RUN python -c "import cartopy; import cartopy.crs; print(cartopy.__version__)"
