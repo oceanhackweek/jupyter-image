@@ -8,13 +8,16 @@ on:
       - 'README.md'
 
 env:
-  CONTAINER_NAME: uwhackweeks/oceanhackweek
+  # CONTAINER_NAME: uwhackweeks/oceanhackweek using personal account till push permissions get figured out
+  CONTAINER_NAME: abkfenris/oceanhackweek
   GITHUB_SHA: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2

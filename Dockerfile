@@ -60,7 +60,7 @@ COPY conda-linux-64.lock /tmp/conda-linux-64.lock
 RUN --mount=type=cache,target=/opt/conda/pkgs \
     conda install --name base --file /tmp/conda-linux-64.lock && \
     find -name '*.a' -delete && \
-    rm -rf /opt/conda/conda-meta && \
+    # rm -rf /opt/conda/conda-meta && \
     rm -rf /opt/conda/include && \
     rm /opt/conda/lib/libpython3.9.so.1.0 && \
     find -name '__pycache__' -type d -exec rm -rf '{}' '+'
