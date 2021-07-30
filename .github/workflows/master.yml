@@ -10,6 +10,7 @@ on:
 env:
   # CONTAINER_NAME: uwhackweeks/oceanhackweek using personal account till push permissions get figured out
   CONTAINER_NAME: abkfenris/oceanhackweek
+  GHCR_CONTAINER_NAME: ghcr.io/${{ github.repository_owner }}/jupyer-image
   GITHUB_SHA: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
 
@@ -48,10 +49,20 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: "Log into GitHub Container Registery"
+      uses: docker/login-action@v1.9.0
+      with:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build Docker Image
       uses: docker/build-push-action@v2.6.1
       with:
-        tags: ${{ env.CONTAINER_NAME }}:latest,${{ env.CONTAINER_NAME }}:${{env.DOCKER_TAG}}
+        tags: |
+          ${{ env.CONTAINER_NAME }}:latest
+          ${{ env.CONTAINER_NAME }}:${{env.DOCKER_TAG}}
+          ${{ env.GHCR_CONTAINER_NAME }}:latest
+          ${{ env.GHCR_CONTAINER_NAME }}:${{env.DOCKER_TAG}}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         push: true
