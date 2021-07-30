@@ -47,7 +47,7 @@ COPY install-miniforge.bash /tmp/install-miniforge.bash
 RUN /tmp/install-miniforge.bash
 
 COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-RUN conda install --name base --file /tmp/conda-linux-64.lock
+RUN --mount=type=cache,target=/opt/conda/pkgs conda install --name base --file /tmp/conda-linux-64.lock
 
 # Needed by RStudio
 RUN apt-get update -qq --yes && \
