@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.9
   - pangeo-notebook=2021.07.24
-  - argopy
+  - argopy>=0.1.7
   - bokeh
   - bottleneck
   - cartopy
@@ -24,6 +24,7 @@ dependencies:
   - erddapy
   - fastparquet
   - ffmpeg
+  - gcsfs
   - geolinks
   - geopandas
   - geoviews
@@ -33,6 +34,7 @@ dependencies:
   - holoviews
   - hvplot
   - intake
+  - intake-esm
   - ioos-tools
   - ioos_qc
   - ipyleaflet
