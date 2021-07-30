@@ -62,6 +62,9 @@ jobs:
       with:
         name: conda-packages
         path: conda-packages.txt
+
+    - name: Docker image sizes
+      run: docker images
     
     - name: Move Docker Cache
       run: |
