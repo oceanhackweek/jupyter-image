@@ -8,8 +8,6 @@ on:
       - 'README.md'
 
 env:
-  # CONTAINER_NAME: uwhackweeks/oceanhackweek using personal account till push permissions get figured out
-  CONTAINER_NAME: abkfenris/oceanhackweek
   GHCR_CONTAINER_NAME: ghcr.io/${{ github.repository_owner }}/jupyer-image
   GITHUB_SHA: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
@@ -36,18 +34,12 @@ jobs:
 
     - name: Set Job Environment Variables
       run: |
-        CALVER="$( date -u '+%Y.%m.%d' )"
         SHA7="${GITHUB_SHA::7}"
         DOCKER_TAG=$SHA7
-        IMAGE_SPEC="${CONTAINER_NAME}:${DOCKER_TAG}"
+        IMAGE_SPEC="${GHCR_CONTAINER_NAME}:${DOCKER_TAG}"
         echo "DOCKER_TAG=${DOCKER_TAG}" >> $GITHUB_ENV
         echo "IMAGE_SPEC=${IMAGE_SPEC}" >> $GITHUB_ENV
 
-    - name: "Login to Docker Hub"
-      uses: docker/login-action@v1.9.0
-      with:
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: "Log into GitHub Container Registery"
       uses: docker/login-action@v1.9.0
@@ -60,17 +52,22 @@ jobs:
       uses: docker/build-push-action@v2.6.1
       with:
         tags: |
-          ${{ env.CONTAINER_NAME }}:latest
-          ${{ env.CONTAINER_NAME }}:${{env.DOCKER_TAG}}
           ${{ env.GHCR_CONTAINER_NAME }}:latest
-          ${{ env.GHCR_CONTAINER_NAME }}:${{env.DOCKER_TAG}}
+          ${{ env.IMAGE_SPEC }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
-        push: true
+        push: false
+        load: true
+
+    - name: Push latest Docker image to Github Container Registry
+      run: docker push ${ GHCR_CONTAINER_NAME }:latest
+
+    - name: Push tagged Docker image to Github Container Registry
+      run: docker push ${ IMAGE_SPEC }
 
     - name: Export Full Conda Environment
       run: |
-        docker run ${CONTAINER_NAME}:latest conda list --explicit > conda-packages.txt
+        docker run ${ IMAGE_SPEC } conda list --explicit > conda-packages.txt
 
     - name: Archive Conda Package List
       uses: actions/upload-artifact@v1
