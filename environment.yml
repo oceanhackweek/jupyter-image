@@ -40,9 +40,11 @@ dependencies:
   - jupyter-rsession-proxy
   - jupyter_contrib_nbextensions
   - jupyterlab
+  - jupyterlab-git
   - matplotlib-base
   - movingpandas
   - nb_conda_kernels
+  - nbgitpuller
   - nc-time-axis
   - netcdf4
   - numpy
