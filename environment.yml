@@ -64,7 +64,6 @@ dependencies:
   - seawater
   - shapely
   - siphon
-  - tensorflow
   - xarray
   - xgcm
   - xlrd
