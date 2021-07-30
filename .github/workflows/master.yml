@@ -60,14 +60,14 @@ jobs:
         load: true
 
     - name: Push latest Docker image to Github Container Registry
-      run: docker push ${ GHCR_CONTAINER_NAME }:latest
+      run: docker push ${{ env.GHCR_CONTAINER_NAME }}:latest
 
     - name: Push tagged Docker image to Github Container Registry
-      run: docker push ${ IMAGE_SPEC }
+      run: docker push ${{ env.IMAGE_SPEC }}
 
     - name: Export Full Conda Environment
       run: |
-        docker run ${ IMAGE_SPEC } conda list --explicit > conda-packages.txt
+        docker run ${{ env.IMAGE_SPEC }} conda list --explicit > conda-packages.txt
 
     - name: Archive Conda Package List
       uses: actions/upload-artifact@v1
