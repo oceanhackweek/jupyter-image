@@ -58,6 +58,7 @@ jobs:
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         push: false
         load: true
+        context: .
 
     - name: Push latest Docker image to Github Container Registry
       run: docker push ${{ env.GHCR_CONTAINER_NAME }}:latest

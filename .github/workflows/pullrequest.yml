@@ -42,6 +42,7 @@ jobs:
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         load: true
+        context: .
 
     - name: Export Full Conda Environment
       run: |
