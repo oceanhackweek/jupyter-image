@@ -14,6 +14,7 @@ ENV NB_UID 1000
 ENV SHELL /bin/bash
 
 ENV CONDA_DIR /srv/conda
+ENV CONDA_ENV base
 ENV R_LIBS_USER /opt/r
 
 # Explicitly add littler to PATH
@@ -71,7 +72,7 @@ USER ${NB_USER}
 
 COPY --chown=jovyan:jovyan conda-linux-64.lock /tmp/conda-linux-64.lock
 RUN --mount=type=cache,target=${CONDA_DIR}/pkgs \
-    conda install --name base --file /tmp/conda-linux-64.lock && \
+    conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
     rm -rf ${CONDA_DIR}/include && \
