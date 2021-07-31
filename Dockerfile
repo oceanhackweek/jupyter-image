@@ -11,8 +11,9 @@ ENV LANGUAGE en_US.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NB_USER jovyan
 ENV NB_UID 1000
+ENV SHELL /bin/bash
 
-ENV CONDA_DIR /opt/conda
+ENV CONDA_DIR /srv/conda
 ENV R_LIBS_USER /opt/r
 
 # Explicitly add littler to PATH
@@ -24,7 +25,9 @@ ENV PYTHONUNBUFFERED 1
 # Don't write bytecode
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER}
+RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
+    && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
+    && chown -R ${NB_USER}:${NB_USER} /srv
 
 # Create user owned R libs dir
 # This lets users temporarily install packages
@@ -51,20 +54,6 @@ RUN apt-get update -qq --yes > /dev/null && \
 RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
     locale-gen
 
-WORKDIR /home/jovyan
-
-COPY install-miniforge.bash /tmp/install-miniforge.bash
-RUN /tmp/install-miniforge.bash
-
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-RUN --mount=type=cache,target=/opt/conda/pkgs \
-    conda install --name base --file /tmp/conda-linux-64.lock && \
-    find -name '*.a' -delete && \
-    # rm -rf /opt/conda/conda-meta && \
-    rm -rf /opt/conda/include && \
-    rm /opt/conda/lib/libpython3.9.so.1.0 && \
-    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
-
 # Set path where R packages are installed
 # Download and install rstudio manually
 # Newer one has bug that doesn't work with jupyter-rsession-proxy
@@ -73,7 +62,21 @@ RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
     dpkg -i /tmp/rstudio.deb && \
     rm /tmp/rstudio.deb
 
+WORKDIR /home/jovyan
+
+COPY install-miniforge.bash /tmp/install-miniforge.bash
+RUN /tmp/install-miniforge.bash
+
 USER ${NB_USER}
+
+COPY --chown=jovyan:jovyan conda-linux-64.lock /tmp/conda-linux-64.lock
+RUN --mount=type=cache,target=${CONDA_DIR}/pkgs \
+    conda install --name base --file /tmp/conda-linux-64.lock && \
+    find -name '*.a' -delete && \
+    # rm -rf /opt/conda/conda-meta && \
+    rm -rf ${CONDA_DIR}/include && \
+    rm ${CONDA_DIR}/lib/libpython3.9.so.1.0 && \
+    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
 # Install BigelowLab dev R libs
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
@@ -82,3 +85,5 @@ RUN Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE
 
 # TEST
 RUN python -c "import cartopy; import cartopy.crs; print(cartopy.__version__)"
+
+COPY CONDARC ./.condarc
