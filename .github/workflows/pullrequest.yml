@@ -30,9 +30,9 @@ jobs:
       uses: actions/cache@v2.1.6
       with:
         path: /tmp/.buildx-cache
-        key: ohw-docker-buildx-${{ github.sha }}
+        key: ohw-docker-buildx-srv-${{ github.sha }}
         restore-keys: |
-          ohw-docker-buildx-
+          ohw-docker-buildx-srv-
 
     - name: Build Docker Image
       uses: docker/build-push-action@v2.6.1
@@ -42,7 +42,6 @@ jobs:
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         load: true
-        context: .
 
     - name: Export Full Conda Environment
       run: |

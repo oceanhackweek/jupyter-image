@@ -28,9 +28,9 @@ jobs:
       uses: actions/cache@v2.1.6
       with:
         path: /tmp/.buildx-cache
-        key: ohw-docker-buildx-${{ github.sha }}
+        key: ohw-docker-buildx-srv-${{ github.sha }}
         restore-keys: |
-          ohw-docker-buildx-
+          ohw-docker-buildx-srv-
 
     - name: Set Job Environment Variables
       run: |
@@ -58,7 +58,6 @@ jobs:
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         push: false
         load: true
-        context: .
 
     - name: Push latest Docker image to Github Container Registry
       run: docker push ${{ env.GHCR_CONTAINER_NAME }}:latest
