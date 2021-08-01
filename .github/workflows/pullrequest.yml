@@ -30,9 +30,9 @@ jobs:
       uses: actions/cache@v2.1.6
       with:
         path: /tmp/.buildx-cache
-        key: ohw-docker-buildx-srv-${{ github.sha }}
+        key: ohw-docker-buildx-${{ github.sha }}
         restore-keys: |
-          ohw-docker-buildx-srv-
+          ohw-docker-buildx-
 
     - name: Build Docker Image
       uses: docker/build-push-action@v2.6.1

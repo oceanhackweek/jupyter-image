@@ -1,3 +1,4 @@
+#syntax=docker/dockerfile:1.2
 # Most of the stuff here is from:
 # https://github.com/2i2c-org/pilot-hubs/tree/master/images/user
 # and
