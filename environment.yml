@@ -19,6 +19,7 @@ dependencies:
   - conda-lock
   - ctd
   - dask
+  - dask-gateway
   - datashader
   - descartes
   - erddapy
