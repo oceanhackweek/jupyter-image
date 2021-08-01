@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.2
+#syntax=docker/dockerfile:1.3
 # Most of the stuff here is from:
 # https://github.com/2i2c-org/pilot-hubs/tree/master/images/user
 # and
@@ -72,7 +72,7 @@ RUN /tmp/install-miniforge.bash
 USER ${NB_USER}
 
 COPY --chown=jovyan:jovyan conda-linux-64.lock /tmp/conda-linux-64.lock
-RUN --mount=type=cache,target=${CONDA_DIR}/pkgs \
+RUN --mount=type=cache,target=${CONDA_DIR}/pkgs,uid=1000,gid=1000 \
     conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
