@@ -20,9 +20,9 @@ dependencies:
   - ctd
   - dask
   - dask-gateway=0.9.0  # needs to match underlying dask-gateway-server on cluster which is most likely to match https://github.com/2i2c-org/pilot-hubs/blob/master/images/user/requirements.txt
-  - distributed
   - datashader
   - descartes
+  - distributed
   - erddapy
   - fastparquet
   - ffmpeg
@@ -70,6 +70,7 @@ dependencies:
   - seawater
   - shapely
   - siphon
+  - tensorflow
   - xarray
   - xgcm
   - xlrd
