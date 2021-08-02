@@ -77,7 +77,6 @@ RUN --mount=type=cache,target=${CONDA_DIR}/pkgs,uid=1000,gid=1000 \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
     rm -rf ${CONDA_DIR}/include && \
-    rm ${CONDA_DIR}/lib/libpython3.9.so.1.0 && \
     find -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
 # Install BigelowLab dev R libs
