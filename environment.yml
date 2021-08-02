@@ -11,8 +11,6 @@ dependencies:
   - cdsapi
   - cf-units
   - cf_xarray
-  - pip:
-    - git+https://github.com/jbusecke/cmip6_preprocessing.git
   - cmocean
   - colorcet
   - compilers
