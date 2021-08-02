@@ -79,6 +79,9 @@ RUN --mount=type=cache,target=${CONDA_DIR}/pkgs,uid=1000,gid=1000 \
     rm -rf ${CONDA_DIR}/include && \
     find -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
+# Install dev pip packages
+RUN pip install git+https://github.com/jbusecke/cmip6_preprocessing.git
+
 # Install BigelowLab dev R libs
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
 RUN Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
