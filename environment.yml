@@ -11,7 +11,6 @@ dependencies:
   - cdsapi
   - cf-units
   - cf_xarray
-  - cmip6_preprocessing
   - cmocean
   - colorcet
   - compilers
