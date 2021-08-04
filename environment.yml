@@ -22,6 +22,7 @@ dependencies:
   - datashader
   - descartes
   - distributed
+  - echopype
   - erddapy
   - fastparquet
   - ffmpeg
@@ -36,6 +37,7 @@ dependencies:
   - hvplot
   - intake
   - intake-esm
+  - intake-xarray
   - ioos-tools
   - ioos_qc
   - ipyleaflet
@@ -70,6 +72,7 @@ dependencies:
   - shapely
   - siphon
   - tensorflow
+  - unzip
   - xarray
   - xgcm
   - xlrd

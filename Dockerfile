@@ -91,3 +91,7 @@ RUN Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE
 RUN python -c "import cartopy; import cartopy.crs; print(cartopy.__version__)"
 
 COPY CONDARC ./.condarc
+
+USER root
+RUN chown -R jovyan /srv/conda/
+USER ${NB_USER}
