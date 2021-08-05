@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.9
   - pangeo-notebook=2021.07.24
-  - argopy>=0.1.7
+  - argopy >=0.1.7
   - bokeh
   - bottleneck
   - cartopy
@@ -78,7 +78,7 @@ dependencies:
   - xlrd
   - zarr
   # R packages
-  - r-base
+  - r-base >=4
   - r-abind
   - r-akima
   - r-ape
@@ -141,7 +141,7 @@ dependencies:
   - r-readr
   - r-remotes
   - r-reshape
-  - r-rgdal>=1.5
+  - r-rgdal >=1.5
   - r-rgeos
   - r-rlang
   - r-rmarkdown
@@ -161,5 +161,6 @@ dependencies:
   - r-tzdb
   - r-vegan
   - r-vroom
+  - r-wdpar
   - r-xml2
   - rpy2
