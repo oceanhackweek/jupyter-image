@@ -74,6 +74,7 @@ dependencies:
   - tensorflow
   - unzip
   - xarray
+  - xesmf
   - xgcm
   - xlrd
   - zarr
