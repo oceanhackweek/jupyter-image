@@ -93,6 +93,7 @@ dependencies:
   - r-cowplot
   - r-crul
   - r-dbi
+  - r-devtools
   - r-dismo
   - r-doparallel
   - r-dplyr
