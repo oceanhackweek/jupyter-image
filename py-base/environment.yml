@@ -1,0 +1,86 @@
+name: OHW-py
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pangeo-notebook=2022.07.12
+  - argopy>=0.1.7
+  - bokeh
+  - bottleneck
+  - cartopy
+  - cdsapi
+  - cf-units
+  - cf_xarray
+  - cmocean
+  - colorcet
+  - compilers
+  - compliance-checker
+  - conda-lock
+  - ctd
+  # - dask  # supplied by pangeo-notebook
+  # - dask-gateway=2022.6.1 # 2022.6.1 is what 2i2c is set to, and needs to match underlying dask-gateway-server on cluster. Supplied by pangeo-notebook
+  # - dask-labextension # supplied by pangeo-notebook
+  - datashader
+  - descartes
+  # - distributed # supplied by pangeo-notebook
+  - echopype
+  - erddapy
+  - fastparquet
+  - ffmpeg
+  - gcsfs
+  - geolinks
+  - geopandas
+  - geoviews
+  - graphviz
+  - gsw
+  - git
+  - h5netcdf
+  - holoviews
+  - hvplot
+  - intake
+  - intake-esm
+  - intake-xarray
+  - ioos-tools
+  - ioos_qc
+  - ipyleaflet
+  - ipywidgets # supplied by pangeo-notebook
+  - jupyter
+  # - jupyter-rsession-proxy
+  # - jupyer-server-proxy # supplied by pangeo-notebook
+  - jupyter_contrib_nbextensions
+  # - jupyterlab # supplied by pangeo-notebook
+  - jupyterlab-git
+  # - jupyterhub>=2.3.1  # 2.3.1 is the minimum required by 2i2c, and is supplied by pangeo-notebook
+  # - jupterhub-singleuser  # supplied by pangeo-notebook
+  - matplotlib-base
+  - movingpandas
+  - nb_conda_kernels
+  # - nbgitpuller  # supplied by pangeo-notebook
+  - nc-time-axis
+  - netcdf4
+  - numpy
+  - palettable
+  - pandas
+  - panel
+  - param
+  - podaacpy
+  - pyoos
+  - python-snappy
+  - rasterio
+  - regionmask
+  - requests
+  - retrying
+  - rise
+  - s3fs
+  - scipy
+  - seaborn
+  - seawater
+  - shapely
+  - siphon
+  # - tensorflow
+  - unzip
+  - xarray
+  - xesmf
+  - xgcm
+  - xlrd
+  - zarr

@@ -1,0 +1,35 @@
+name: Build base Python image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "py-base/"
+  pull_request:
+    paths:
+      - "py-base/"
+
+jobs:
+  shortsha:
+    name: Generate Short SHA for Docker tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Short SHA
+        id: shortsha
+        run: echo "::set-output name=shortsha::$(git rev-parse --short HEAD)"
+
+    outputs:
+      shortsha: ${{steps.shortsha.outputs.shortsha}}
+
+  build_push:
+    needs: [shortsha]
+    uses: ./.github/workflows/build-image.yml
+    with:
+      working_directory: ./py-base
+      image_tag: ${{ needs.shortsha.outputs.shortsha }}
+      image_name: python
+      push_image: ${{ github.event_name == 'push' }}
