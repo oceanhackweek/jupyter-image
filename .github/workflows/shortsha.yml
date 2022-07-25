@@ -1,0 +1,24 @@
+name: Generate short SHA
+
+on:
+  workflow_call:
+    outputs:
+      shortsha:
+        description: A shortened version of the current commit's SHA
+        value: ${{ jobs.shortsha.outputs.shortsha }}
+  workflow_dispatch:
+
+jobs:
+  shortsha:
+    name: Generate Short SHA for Docker tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Short SHA
+        id: shortsha
+        run: echo "::set-output name=shortsha::$(git rev-parse --short HEAD)"
+
+    outputs:
+      shortsha: ${{steps.shortsha.outputs.shortsha}}
