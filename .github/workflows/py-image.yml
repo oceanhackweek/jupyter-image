@@ -33,3 +33,5 @@ jobs:
       image_tag: ${{ needs.shortsha.outputs.shortsha }}
       image_name: python
       push_image: ${{ github.event_name == 'push' }}
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
