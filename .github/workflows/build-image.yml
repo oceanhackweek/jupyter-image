@@ -104,7 +104,7 @@ jobs:
 
       - name: Export Full Conda Environment
         run: |
-          docker run ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }} conda list --explicit > conda-packages.txt
+          docker run ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} conda list --explicit > conda-packages.txt
 
           echo "### Conda Environment" >> $GITHUB_STEP_SUMMARY
           cat conda-packages.txt >> $GITHUB_STEP_SUMMARY
@@ -125,7 +125,7 @@ jobs:
 
       - name: Push Docker Image to GitHub Container Registry
         if: ${{ inputs.push_image }}
-        run: docker push ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
 
       - name: Move Docker Cache
         run: |
