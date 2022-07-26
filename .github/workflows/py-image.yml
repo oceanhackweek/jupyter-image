@@ -6,9 +6,12 @@ on:
       - main
     paths:
       - "py-base/**"
+      - ".github/workflows/**"
   pull_request:
     paths:
       - "py-base/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
 
 jobs:
   shortsha:
