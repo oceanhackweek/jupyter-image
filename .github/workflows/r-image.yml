@@ -1,0 +1,29 @@
+name: Build R image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "r/**"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "r/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+jobs:
+  shortsha:
+    uses: ./.github/workflows/shortsha.yml
+
+  build_push:
+    needs: [shortsha]
+    uses: ./.github/workflows/build-image.yml
+    with:
+      working_directory: ./r
+      image_tag: ${{ needs.shortsha.outputs.shortsha }}
+      image_name: python
+      push_image: ${{ github.event_name == 'push' }}
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

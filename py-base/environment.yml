@@ -2,8 +2,16 @@ name: OHW-py
 channels:
   - conda-forge
 dependencies:
-  - python=3.9
+  # base
+  - python=3.10
   - pangeo-notebook=2022.07.12
+  - nb_conda_kernels
+  - curl
+  - git
+  - wget
+  - tar
+  - vim
+  # Python packages
   - argopy>=0.1.7
   - bokeh
   - bottleneck

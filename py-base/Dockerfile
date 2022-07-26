@@ -8,6 +8,11 @@ ENV HOME /home/jovyan
 ENV CONDA_DIR /srv/conda
 ENV CONDA_ENV base
 
+# Output logging faster
+ENV PYTHONUNBUFFERED 1
+# Don't write bytecode
+ENV PYTHONDONTWRITEBYTECODE 1
+
 USER root
 RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
     && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
