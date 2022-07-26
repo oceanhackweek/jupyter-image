@@ -25,7 +25,8 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
 
 # Install these without 'recommended' packages to keep image smaller.
 # Useful utils that folks sort of take for granted
-RUN apt-get update -qq --yes > /dev/null && \
+RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
+    apt-get update -qq --yes > /dev/null && \
     apt-get install --yes --no-install-recommends -qq \
     curl \
     git \
@@ -38,8 +39,10 @@ RUN apt-get update -qq --yes > /dev/null && \
     psmisc \
     sudo \
     libapparmor1 \
+    libpq5 \
     lsb-release \
-    libclang-dev > /dev/null
+    libclang-dev > /dev/null && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
     locale-gen
