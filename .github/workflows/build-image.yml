@@ -88,7 +88,7 @@ jobs:
         uses: docker/build-push-action@v2.6.1
         with:
           tags: |
-            ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }}
+            ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: false
