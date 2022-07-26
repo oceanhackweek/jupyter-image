@@ -24,6 +24,9 @@ on:
       GH_TOKEN:
         description: Github access token
         required: false
+      SLACK_WEBHOOK_URL:
+        description: Slack webhook URL to send messages to
+        required: false
     outputs:
       image_name:
         description: Fully qualified image name
@@ -130,6 +133,27 @@ jobs:
       - name: Push Docker Image to GitHub Container Registry
         if: ${{ inputs.push_image }}
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+
+      - name: Notify on newly built image
+        if: ${{ inputs.push_image }}
+        uses: slackapi/slack-github-action@v1.18.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        with:
+          payload: |
+            {
+              "text": "Built image ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}. Maybe let 2i2c know?",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Built image `${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}`. Maybe let 2i2c know?"
+                  }
+                }
+              ]
+            }
 
       - name: Move Docker Cache
         run: |
