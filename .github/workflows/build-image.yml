@@ -20,6 +20,10 @@ on:
         description: Should the image be pushed to the Github Container Registry
         required: false
         default: false
+    secrets:
+      GITHUB_TOKEN:
+        description: Github access token
+        required: false
     outputs:
       image_name:
         description: Fully qualified image name
