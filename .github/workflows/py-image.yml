@@ -1,0 +1,26 @@
+name: Build base Python image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "py-base/"
+  pull_request:
+    paths:
+      - "py-base/"
+
+jobs:
+  shortsha:
+    uses: ./.github/workflows/shortsha.yml
+
+  build_push:
+    needs: [shortsha]
+    uses: ./.github/workflows/build-image.yml
+    with:
+      working_directory: ./py-base
+      image_tag: ${{ needs.shortsha.outputs.shortsha }}
+      image_name: python
+      push_image: ${{ github.event_name == 'push' }}
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
