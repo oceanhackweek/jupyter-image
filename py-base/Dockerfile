@@ -14,7 +14,6 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
     && chown -R ${NB_USER}:${NB_USER} /srv
 
 WORKDIR ${HOME}
-# USER ${NB_USER}
 USER ${USER}
 
 COPY ./conda-linux-64.lock /tmp/

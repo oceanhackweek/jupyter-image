@@ -20,6 +20,10 @@ on:
         description: Should the image be pushed to the Github Container Registry
         required: false
         default: false
+    secrets:
+      GH_TOKEN:
+        description: Github access token
+        required: false
     outputs:
       image_name:
         description: Fully qualified image name
@@ -88,7 +92,7 @@ jobs:
         uses: docker/build-push-action@v2.6.1
         with:
           tags: |
-            ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }}
+            ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: false
@@ -97,14 +101,14 @@ jobs:
 
       - name: Docker image sizes
         run: |
-          docker images
+          docker images | grep ${{ env.IMAGE_NAME }}
 
           echo "### Image sizes" >> $GITHUB_STEP_SUMMARY
           docker images >> $GITHUB_STEP_SUMMARY
 
       - name: Export Full Conda Environment
         run: |
-          docker run ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }} conda list --explicit > conda-packages.txt
+          docker run ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} micromamba list > conda-packages.txt
 
           echo "### Conda Environment" >> $GITHUB_STEP_SUMMARY
           cat conda-packages.txt >> $GITHUB_STEP_SUMMARY
@@ -121,11 +125,11 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Push Docker Image to GitHub Container Registry
         if: ${{ inputs.push_image }}
-        run: docker push ${{ env.IMAGE_NAME }}:${{ DOCKER_TAG }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
 
       - name: Move Docker Cache
         run: |

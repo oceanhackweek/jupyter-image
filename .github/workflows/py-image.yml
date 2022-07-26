@@ -5,10 +5,13 @@ on:
     branches:
       - main
     paths:
-      - "py-base/"
+      - "py-base/**"
+      - ".github/workflows/**"
   pull_request:
     paths:
-      - "py-base/"
+      - "py-base/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
 
 jobs:
   shortsha:
@@ -23,4 +26,4 @@ jobs:
       image_name: python
       push_image: ${{ github.event_name == 'push' }}
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
