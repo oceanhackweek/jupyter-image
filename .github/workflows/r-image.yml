@@ -23,7 +23,7 @@ jobs:
     with:
       working_directory: ./r
       image_tag: ${{ needs.shortsha.outputs.shortsha }}
-      image_name: python
+      image_name: r
       push_image: ${{ github.event_name == 'push' }}
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
