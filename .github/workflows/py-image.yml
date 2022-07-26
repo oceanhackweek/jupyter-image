@@ -5,10 +5,10 @@ on:
     branches:
       - main
     paths:
-      - "py-base/"
+      - "py-base/**"
   pull_request:
     paths:
-      - "py-base/"
+      - "py-base/**"
 
 jobs:
   shortsha:
