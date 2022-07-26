@@ -23,21 +23,6 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
     && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
     && chown -R ${NB_USER}:${NB_USER} /srv
 
-WORKDIR ${HOME}
-USER ${USER}
-
-COPY ./conda-linux-64.lock /tmp/
-
-RUN --mount=type=cache,id=ohw_r,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
-    micromamba install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
-    # micromamba install --name ${CONDA_ENV} --file environment.yml && \
-    find -name '*.a' -delete && \
-    # rm -rf /opt/conda/conda-meta && \
-    rm -rf ${CONDA_DIR}/include && \
-    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
-
-USER root
-
 # Install these without 'recommended' packages to keep image smaller.
 # Useful utils that folks sort of take for granted
 RUN apt-get update -qq --yes > /dev/null && \
@@ -62,12 +47,25 @@ RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
 # Set path where R packages are installed
 # Download and install rstudio manually
 # Newer one has bug that doesn't work with jupyter-rsession-proxy
-ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5042-amd64.deb
+ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
 RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
     dpkg -i /tmp/rstudio.deb && \
     rm /tmp/rstudio.deb
 
 USER ${USER}
+
+WORKDIR ${HOME}
+USER ${USER}
+
+COPY ./conda-linux-64.lock /tmp/
+
+RUN --mount=type=cache,id=ohw_r,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
+    micromamba install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
+    # micromamba install --name ${CONDA_ENV} --file environment.yml && \
+    find -name '*.a' -delete && \
+    # rm -rf /opt/conda/conda-meta && \
+    rm -rf ${CONDA_DIR}/include && \
+    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
