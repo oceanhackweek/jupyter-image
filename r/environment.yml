@@ -6,6 +6,7 @@ dependencies:
   - python=3.10
   - pangeo-notebook=2022.07.12
   - nb_conda_kernels
+  - jupyter-rsession-proxy
   # - curl
   # - git
   # - wget
@@ -13,6 +14,7 @@ dependencies:
   # - vim
   # R packages
   - r-base >=4
+  # - rstudio
   - r-abind
   - r-akima
   - r-ape

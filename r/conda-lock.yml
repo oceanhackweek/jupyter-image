@@ -15,7 +15,7 @@ metadata:
   - url: conda-forge
     used_env_vars: []
   content_hash:
-    linux-64: 2cf0afe23d90c27daac060f095097bfea8b2a472454b09934d275c3bc025daba
+    linux-64: 899d4fac3f02041ee16cb3c2a7f242f11b9ab96975c7fd9eb7257b3fb331f56e
   platforms:
   - linux-64
   sources:
@@ -548,17 +548,17 @@ package:
   version: 2.0.0
 - category: main
   dependencies:
-    libgcc-ng: '>=10.3.0'
+    libgcc-ng: '>=12'
     libgfortran-ng: ''
     libgfortran5: '>=10.3.0'
   hash:
-    md5: 9b6d0781953c9e353faee494336cc229
-    sha256: 2e840f4165a62dd826d16e0d51b3928bed46ca33fe943addd52c84f55ccc9551
+    md5: 759c6f385ca4110f5fb185d404d306a3
+    sha256: a865572f556512fc49718318bb708b5f1be71e5e5feb13de88539fb5d15cc709
   manager: conda
   name: libopenblas
   optional: false
   platform: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.20-pthreads_h78a6416_0.tar.bz2
+  url: https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.20-pthreads_h78a6416_1.tar.bz2
   version: 0.3.20
 - category: main
   dependencies:
@@ -3292,17 +3292,17 @@ package:
     graphite2: ''
     icu: '>=70.1,<71.0a0'
     libgcc-ng: '>=12'
-    libglib: '>=2.70.2,<3.0a0'
+    libglib: '>=2.72.1,<3.0a0'
     libstdcxx-ng: '>=12'
   hash:
-    md5: ac83998fdc71721da8c8f0846a25a503
-    sha256: d9ca0d32a771554a06406bbf6ab8f41b5d5899e1de46a54c23fe575753f80223
+    md5: e63a748f2f13b2b1e034ff9f5917edaa
+    sha256: 396b87c172b969e0924d15247ee512fb960e90ba15b567dfb4dad77e4d3062bf
   manager: conda
   name: harfbuzz
   optional: false
   platform: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-4.4.1-hf9f4e7c_0.tar.bz2
-  version: 4.4.1
+  url: https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-5.0.1-hf9f4e7c_0.tar.bz2
+  version: 5.0.1
 - category: main
   dependencies:
     importlib-metadata: '>=4.11.4,<4.11.5.0a0'
@@ -3730,18 +3730,18 @@ package:
     fonts-conda-ecosystem: ''
     freetype: '>=2.10.4,<3.0a0'
     fribidi: '>=1.0.10,<2.0a0'
-    harfbuzz: '>=4.4.1,<5.0a0'
+    harfbuzz: '>=5.0.1,<6.0a0'
     libgcc-ng: '>=12'
-    libglib: '>=2.70.2,<3.0a0'
+    libglib: '>=2.72.1,<3.0a0'
     libpng: '>=1.6.37,<1.7.0a0'
   hash:
-    md5: e76dcd4a0efe0c037929f98c2fd87e10
-    sha256: 4cb4e46ff25408474f7e5d4f09cb721ce151ca33acf010cda32f3a917ae4dd86
+    md5: 302c545886fc6438adaf13bac64e5188
+    sha256: 7ae53d201f1b22c502fbbb154cf37c011fe7cb369deefcb9a27a8c7c1b5dcb8f
   manager: conda
   name: pango
   optional: false
   platform: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/pango-1.50.8-hbd2fdc8_0.tar.bz2
+  url: https://conda.anaconda.org/conda-forge/linux-64/pango-1.50.8-hc4f8a73_1.tar.bz2
   version: 1.50.8
 - category: main
   dependencies:
@@ -7093,20 +7093,20 @@ package:
   dependencies:
     freetype: '>=2.10.4,<3.0a0'
     fribidi: '>=1.0.10,<2.0a0'
-    harfbuzz: '>=4.1.0,<5.0a0'
-    libgcc-ng: '>=10.3.0'
-    libstdcxx-ng: '>=10.3.0'
+    harfbuzz: '>=5.0.1,<6.0a0'
+    libgcc-ng: '>=12'
+    libstdcxx-ng: '>=12'
     r-base: '>=4.1,<4.2.0a0'
     r-cpp11: '>=0.2.1'
     r-systemfonts: '>=1.0.0'
   hash:
-    md5: 10dc8d6acb782b9bdf2cdf8b7ea59c96
-    sha256: 8bd6a8e85fb1e5c20519d4c720aa7aa5b7af37a73a28fa6fbb570a8d527a36bc
+    md5: 49a17a323e50669d9ccdaa97f0f39291
+    sha256: 89333504e4ccfb3059f26923e3281d88e31447de333ed69d29e51b8edb3b48b6
   manager: conda
   name: r-textshaping
   optional: false
   platform: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/r-textshaping-0.3.6-r41ha32badf_1.tar.bz2
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-textshaping-0.3.6-r41h9354b80_2.tar.bz2
   version: 0.3.6
 - category: main
   dependencies:
@@ -7200,6 +7200,20 @@ package:
   platform: linux-64
   url: https://conda.anaconda.org/conda-forge/linux-64/r-xts-0.12.1-r41h06615bd_0.tar.bz2
   version: 0.12.1
+- category: main
+  dependencies:
+    jupyter-server-proxy: '>=3.1'
+    python: '>=3'
+    setuptools: ''
+  hash:
+    md5: 3cb9b76c89ec112cf0256cec1115b842
+    sha256: 8d8ce80dccf77840b3bc90fd6ab93112222728ccb000881006c08ebe4d4b1dc6
+  manager: conda
+  name: jupyter-rsession-proxy
+  optional: false
+  platform: linux-64
+  url: https://conda.anaconda.org/conda-forge/noarch/jupyter-rsession-proxy-2.0.1-pyhd8ed1ab_0.tar.bz2
+  version: 2.0.1
 - category: main
   dependencies:
     argon2-cffi: ''
