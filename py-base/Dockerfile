@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.3
-FROM mambaorg/micromamba:0.24.0@sha256:653470badb12d800ef925aaade7e22e1a2738e6418ef3abd4ce557411af0d70c
+FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -24,7 +24,7 @@ USER ${USER}
 COPY ./conda-linux-64.lock /tmp/
 
 RUN --mount=type=cache,id=ohw_py,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
-    micromamba install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
+    conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
     # micromamba install --name ${CONDA_ENV} --file environment.yml && \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \

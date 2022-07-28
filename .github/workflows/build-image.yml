@@ -111,7 +111,7 @@ jobs:
 
       - name: Export Full Conda Environment
         run: |
-          docker run ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} micromamba list > conda-packages.txt
+          docker run ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} conda list > conda-packages.txt
 
           echo "### Conda Environment" >> $GITHUB_STEP_SUMMARY
           cat conda-packages.txt >> $GITHUB_STEP_SUMMARY
