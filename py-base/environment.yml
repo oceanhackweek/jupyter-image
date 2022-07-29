@@ -35,13 +35,13 @@ dependencies:
   - erddapy
   - fastparquet
   - ffmpeg
+  - fsspec
   - gcsfs
   - geolinks
   - geopandas
   - geoviews
   - graphviz
   - gsw
-  - git
   - h5netcdf
   - holoviews
   - hvplot
@@ -62,7 +62,6 @@ dependencies:
   # - jupterhub-singleuser  # supplied by pangeo-notebook
   - matplotlib-base
   - movingpandas
-  - nb_conda_kernels
   # - nbgitpuller  # supplied by pangeo-notebook
   - nc-time-axis
   - netcdf4
