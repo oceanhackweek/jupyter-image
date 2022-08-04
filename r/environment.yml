@@ -29,6 +29,7 @@ dependencies:
   - r-crul
   - r-dbi
   - r-devtools
+  - r-dichromat
   - r-dismo
   - r-doparallel
   - r-dplyr
@@ -65,6 +66,7 @@ dependencies:
   - r-nnet
   - r-oce
   - r-ocedata
+  - r-rosm
   - r-patchwork
   - r-plotly
   - r-proc >=1.15.0

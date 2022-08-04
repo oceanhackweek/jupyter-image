@@ -15,7 +15,7 @@ metadata:
   - url: conda-forge
     used_env_vars: []
   content_hash:
-    linux-64: e63ade50c69b9b28e60a89441b932ce37698be6e404d63bb406435d7232a43bb
+    linux-64: d2949eee1f5aa6e8d1f3fb78f35ed3347fc1db0601e00f28b10c857890ae7f6e
   platforms:
   - linux-64
   sources:
@@ -4226,6 +4226,18 @@ package:
   version: '1.0_6'
 - category: main
   dependencies:
+    r-base: '>=4.1,<4.2.0a0'
+  hash:
+    md5: 5af40d7f0dbf943987d6dde56fed35d4
+    sha256: ceca44cef0dfff6e5c59952c85e10e4ad8d2a2735e95f9ae3cff774a3e2ac30d
+  manager: conda
+  name: r-dichromat
+  optional: false
+  platform: linux-64
+  url: https://conda.anaconda.org/conda-forge/noarch/r-dichromat-2.0_0.1-r41ha770c72_0.tar.bz2
+  version: 2.0_0.1
+- category: main
+  dependencies:
     libgcc-ng: '>=9.4.0'
     libstdcxx-ng: '>=9.4.0'
     r-base: '>=4.1,<4.2.0a0'
@@ -4998,6 +5010,20 @@ package:
   platform: linux-64
   url: https://conda.anaconda.org/conda-forge/noarch/r-remotes-2.4.2-r41hc72bb7e_0.tar.bz2
   version: 2.4.2
+- category: main
+  dependencies:
+    libgcc-ng: '>=10.3.0'
+    libstdcxx-ng: '>=10.3.0'
+    r-base: '>=4.1,<4.2.0a0'
+  hash:
+    md5: 82e21e7c7fb1d12962434def79a2e731
+    sha256: 7d5aa008a8f22f2c5ce47eee627c49966689565c8ff5a09430852ec8e267285a
+  manager: conda
+  name: r-rjson
+  optional: false
+  platform: linux-64
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rjson-0.2.21-r41h7525677_1.tar.bz2
+  version: 0.2.21
 - category: main
   dependencies:
     libgcc-ng: '>=12'
@@ -8038,6 +8064,22 @@ package:
 - category: main
   dependencies:
     r-base: '>=4.1,<4.2.0a0'
+    r-digest: ''
+    r-httr: ''
+    r-plyr: ''
+    r-rjson: ''
+  hash:
+    md5: 18f323b7dba8b8512ae384794936f204
+    sha256: fd4cd141dbf5878a2a414b46b953287e176b31a8fee0ab1826c7e473d10e414f
+  manager: conda
+  name: r-prettymapr
+  optional: false
+  platform: linux-64
+  url: https://conda.anaconda.org/conda-forge/noarch/r-prettymapr-0.2.4-r41hc72bb7e_0.tar.bz2
+  version: 0.2.4
+- category: main
+  dependencies:
+    r-base: '>=4.1,<4.2.0a0'
     r-crayon: ''
     r-hms: ''
     r-prettyunits: ''
@@ -8727,6 +8769,27 @@ package:
   platform: linux-64
   url: https://conda.anaconda.org/conda-forge/linux-64/r-rnaturalearth-0.1.0-r41hc72bb7e_0.tar.bz2
   version: 0.1.0
+- category: main
+  dependencies:
+    r-abind: ''
+    r-base: '>=4.1,<4.2.0a0'
+    r-curl: ''
+    r-jpeg: ''
+    r-plyr: ''
+    r-png: ''
+    r-prettymapr: ''
+    r-rgdal: ''
+    r-rjson: ''
+    r-sp: ''
+  hash:
+    md5: 7c4ef56d21bf81d80b148624d8109c4e
+    sha256: 01e50acbb9e70da17cabbaf9f0d951013bacf1091e7b32e5a30a9b0d6b63a397
+  manager: conda
+  name: r-rosm
+  optional: false
+  platform: linux-64
+  url: https://conda.anaconda.org/conda-forge/noarch/r-rosm-0.2.6-r41hc72bb7e_0.tar.bz2
+  version: 0.2.6
 - category: main
   dependencies:
     r-base: '>=4.1,<4.2.0a0'
