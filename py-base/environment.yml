@@ -84,7 +84,7 @@ dependencies:
   - seawater
   - shapely
   - siphon
-  # - tensorflow
+  - tensorflow
   - unzip
   - xarray
   - xesmf
