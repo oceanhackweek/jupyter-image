@@ -29,6 +29,7 @@ dependencies:
   - r-crul
   - r-dbi
   - r-devtools
+  - r-dichromat
   - r-dismo
   - r-doparallel
   - r-dplyr
@@ -65,6 +66,7 @@ dependencies:
   - r-nnet
   - r-oce
   - r-ocedata
+  - r-rosm
   - r-patchwork
   - r-plotly
   - r-proc >=1.15.0
@@ -88,16 +90,23 @@ dependencies:
   - r-rpart
   - r-rsqlite
   - r-rstackdeque
+  - r-rvest
   - r-s2
+  - r-scales
   - r-sf >=0.9_5
   - r-sp
+  - r-stars
+  - r-terra
   - r-tibble
   - r-tidyr
   - r-tidyverse
   - r-tiff
+  - r-tsibble
   - r-tzdb
   - r-vegan
+  - r-viridis
   - r-vroom
   - r-wdpar
   - r-xml2
-  - rpy2
+  - r-xts
+  # - rpy2
