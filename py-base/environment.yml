@@ -81,6 +81,7 @@ dependencies:
   - s3fs
   - scipy
   - seaborn
+  - searvey
   - seawater
   - shapely
   - siphon
