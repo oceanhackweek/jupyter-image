@@ -78,6 +78,7 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('ggspatial', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('plot.matrix', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    Rscript -e "remotes::install_cran('rnoaa', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/rasf', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/xyzt', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
