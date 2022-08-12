@@ -69,6 +69,7 @@ dependencies:
   - r-ocedata
   - r-rosm
   - r-patchwork
+  - r-PCICt
   - r-plotly
   - r-proc >=1.15.0
   - r-ps>=1.3.4
