@@ -7,6 +7,7 @@ dependencies:
   - pangeo-notebook=2022.07.12
   - nb_conda_kernels
   - jupyter-rsession-proxy
+  - gh
   # - curl
   # - git
   # - wget
