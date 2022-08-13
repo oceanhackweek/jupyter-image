@@ -62,8 +62,10 @@ dependencies:
   - r-maps
   - r-maptools
   - r-marmap
+  - r-markdown
   - r-mass
   - r-mda
+  - r-metr
   - r-ncdf4
   - r-nnet
   - r-oce
@@ -106,10 +108,12 @@ dependencies:
   - r-tiff
   - r-tsibble
   - r-tzdb
+  - r-udunits2
   - r-vegan
   - r-viridis
   - r-vroom
   - r-wdpar
+  - r-xaringan
   - r-xml2
   - r-xts
   # - rpy2
