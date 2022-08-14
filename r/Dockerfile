@@ -81,6 +81,7 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
     Rscript -e "remotes::install_cran('isdparser', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('geonames', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('rnoaa', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    Rscript -e "remotes::install_github('hadley/emo', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/rasf', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/xyzt', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
