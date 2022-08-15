@@ -97,6 +97,8 @@ ENV PATH /usr/lib/rstudio-server/bin/:${PATH}
 
 ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib
 ENV PROJ_LIB=${CONDA_DIR}/share/proj
+ENV GDAL_DATA=${CONDA_DIR}/share/gdal
+ENV GDAL_DRIVER_PATH=${CONDA_DIR}/lib/gdalplugins
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
