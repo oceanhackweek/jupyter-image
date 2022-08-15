@@ -95,7 +95,8 @@ COPY CONDARC ./.condarc
 
 ENV PATH /usr/lib/rstudio-server/bin/:${PATH}
 
-ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib
+ENV PROJ_LIB=${CONDA_DIR}/share/proj
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
