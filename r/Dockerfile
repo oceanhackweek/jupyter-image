@@ -90,7 +90,7 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 #    Rscript -e "remotes::install_github('BigelowLab/ersst', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
 #    Rscript -e "remotes::install_github('BigelowLab/hycom', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
 #    Rscript -e "remotes::install_github('kwstat/pals', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)"
-COPY ./install.R ./
+COPY ./install.R ./remotes.yml ./
 
 RUN Rscript install.R remotes.yml
 
