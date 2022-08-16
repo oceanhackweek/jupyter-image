@@ -12,6 +12,7 @@ dependencies:
   - tar
   - vim
   - gh
+  - nano
   # Python packages
   - argopy>=0.1.7
   - bokeh

@@ -8,6 +8,7 @@ dependencies:
   - nb_conda_kernels
   - jupyter-rsession-proxy
   - gh
+  - nano
   # - curl
   # - git
   # - wget
@@ -106,6 +107,8 @@ dependencies:
   - r-tidyr
   - r-tidyverse
   - r-tiff
+  - r-tmap
+  - r-tmaptools
   - r-tsibble
   - r-tzdb
   - r-udunits2
