@@ -5,7 +5,7 @@ ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/jovyan
 
-ENV CONDA_DIR /srv/conda
+ENV CONDA_DIR /opt/conda
 ENV CONDA_ENV base
 ENV R_LIBS_USER /opt/r
 
@@ -94,6 +94,11 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
 COPY CONDARC ./.condarc
 
 ENV PATH /usr/lib/rstudio-server/bin/:${PATH}
+
+ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib
+ENV PROJ_LIB=${CONDA_DIR}/share/proj
+ENV GDAL_DATA=${CONDA_DIR}/share/gdal
+ENV GDAL_DRIVER_PATH=${CONDA_DIR}/lib/gdalplugins
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
