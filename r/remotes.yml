@@ -1,0 +1,22 @@
+extra:
+  dependencies: no
+  upgrade_dependencies: no
+  upgrade: no
+install_cran:
+- assertthat
+- ggspatial
+- plot.matrix
+- isdparser
+- geonames
+- rnoaa
+install_github:
+- hadley/emo
+- BigelowLab/ohwobpg
+- BigelowLab/rasf
+- BigelowLab/xyzt
+- BigelowLab/ghrsst
+- BigelowLab/bsw
+- BigelowLab/ersst
+- BigelowLab/ersst
+- BigelowLab/hycom
+- kwstat/pals
