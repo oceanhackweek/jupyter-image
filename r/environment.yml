@@ -49,6 +49,7 @@ dependencies:
   - r-hexbin
   - r-httpcache
   - r-httr
+  - r-igraph
   - r-irkernel
   - r-jsonlite
   - r-keras
@@ -105,6 +106,7 @@ dependencies:
   - r-terra
   - r-tibble
   - r-tidyr
+  - r-tidygraph
   - r-tidyverse
   - r-tiff
   - r-tmap
