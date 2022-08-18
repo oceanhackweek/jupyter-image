@@ -32,7 +32,10 @@ RUN --mount=type=cache,id=ohw_py,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_U
     find -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
 COPY CONDARC ./.condarc
+COPY --chown=${NB_USER} entrypoint.sh /opt/entrypoint.sh
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
 USER ${NB_USER}
+
+ENTRYPOINT [ "/opt/entrypoint.sh" ]
