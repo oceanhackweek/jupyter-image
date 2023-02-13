@@ -4,7 +4,8 @@ channels:
 dependencies:
   # base
   - python=3.9
-  - pangeo-notebook=2022.07.12
+  - pip
+  - pangeo-notebook=2023.02.11
   - nb_conda_kernels
   - curl
   - git
@@ -13,6 +14,9 @@ dependencies:
   - vim
   - gh
   - nano
+  # JupyterLab language packs
+  - jupyterlab-language-pack-es-ES
+  - jupyterlab-language-pack-pt-BR
   # Python packages
   - argopy>=0.1.7
   - bokeh
@@ -26,6 +30,7 @@ dependencies:
   - compilers
   - compliance-checker
   - conda-lock
+  - contextily
   - ctd
   # - dask  # supplied by pangeo-notebook
   # - dask-gateway=2022.6.1 # 2022.6.1 is what 2i2c is set to, and needs to match underlying dask-gateway-server on cluster. Supplied by pangeo-notebook
@@ -37,6 +42,7 @@ dependencies:
   - erddapy
   - fastparquet
   - ffmpeg
+  - folium
   - fsspec
   - gcsfs
   - geolinks
@@ -79,7 +85,9 @@ dependencies:
   - regionmask
   - requests
   - retrying
-  - rise
+  - rioxarray
+  # 2/12/23: Caused error during mamba env create
+  # - rise
   - s3fs
   - scipy
   - seaborn
@@ -94,3 +102,8 @@ dependencies:
   - xgcm
   - xlrd
   - zarr
+  - pip:
+    # PyPI package is older, 
+    # but installing from github leads to conda-lock error
+    # - git+https://github.com/open-ocean-sounding/echopy.git
+    - echopy
