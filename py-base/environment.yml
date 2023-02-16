@@ -4,7 +4,6 @@ channels:
 dependencies:
   # base
   - python=3.9
-  # - pip
   - pangeo-notebook=2023.02.11
   - nb_conda_kernels
   - curl
@@ -38,6 +37,7 @@ dependencies:
   - datashader
   - descartes
   # - distributed # supplied by pangeo-notebook
+  - echopy
   - echopype
   - erddapy
   - fastparquet
@@ -105,7 +105,3 @@ dependencies:
   - xgcm
   # - xlrd  # deprecated, use openpyxl instead
   - zarr
-  # - pip:
-    # - echopy
-    # 2/15/23: Working through issues with echopy installation
-    # https://github.com/oceanhackweek/jupyter-image/pull/63
