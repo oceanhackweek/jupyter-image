@@ -4,7 +4,7 @@ channels:
 dependencies:
   # base
   - python=3.9
-  - pip
+  # - pip
   - pangeo-notebook=2023.02.11
   - nb_conda_kernels
   - curl
@@ -74,6 +74,7 @@ dependencies:
   - nc-time-axis
   - netcdf4
   - numpy
+  - openpyxl
   - palettable
   - pandas
   - panel
@@ -93,6 +94,8 @@ dependencies:
   - seaborn
   - searvey
   - seawater
+  # 2/15/2023: Heads-up: shapely 2.0 may be causing havoc,
+  # and it may be a good idea to pin it to <2
   - shapely
   - siphon
   - tensorflow-cpu
@@ -100,10 +103,9 @@ dependencies:
   - xarray
   - xesmf
   - xgcm
-  - xlrd
+  # - xlrd  # deprecated, use openpyxl instead
   - zarr
-  - pip:
-    # PyPI package is older, 
-    # but installing from github leads to conda-lock error
-    # - git+https://github.com/open-ocean-sounding/echopy.git
-    - echopy
+  # - pip:
+    # - echopy
+    # 2/15/23: Working through issues with echopy installation
+    # https://github.com/oceanhackweek/jupyter-image/pull/63
