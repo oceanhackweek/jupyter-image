@@ -4,7 +4,7 @@ channels:
 dependencies:
   # base
   - python=3.9
-  - pangeo-notebook=2022.07.12
+  - pangeo-notebook=2023.02.11
   - nb_conda_kernels
   - jupyter-rsession-proxy
   - gh
@@ -59,6 +59,7 @@ dependencies:
   - r-littler
   - r-lpsolve
   - r-lubridate
+  - r-mmand
   - r-mapdata
   - r-mapedit
   - r-maps
@@ -73,6 +74,7 @@ dependencies:
   - r-oce
   - r-ocedata
   - r-rosm
+  - r-palmerpenguins
   - r-patchwork
   - r-PCICt
   - r-plotly
