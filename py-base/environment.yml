@@ -79,6 +79,7 @@ dependencies:
   - pandas
   - panel
   - param
+  - parcels
   - podaacpy
   - pyoos
   - python-snappy
@@ -100,6 +101,7 @@ dependencies:
   - siphon
   - tensorflow-cpu
   - unzip
+  - windrose
   - xarray
   - xesmf
   - xgcm
