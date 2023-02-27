@@ -84,6 +84,7 @@ dependencies:
   - pyoos
   - python-snappy
   - rasterio
+  - rasterstats
   - regionmask
   - requests
   - retrying
