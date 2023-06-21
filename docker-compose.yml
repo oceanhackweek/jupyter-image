@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  py:
+    build: ./py-base
+    command: jupyter lab --port=8080 --ip=0.0.0.0
+    ports:
+      - "8080:8080"
+
+  r:
+    build: ./r
+    command: jupyter lab --port=8080 --ip=0.0.0.0
+    ports:
+      - "8080:8080"
