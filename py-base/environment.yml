@@ -1,6 +1,7 @@
 name: OHW-py
 channels:
   - conda-forge
+  - bioconda
 dependencies:
   # base
   - python=3.9
@@ -108,3 +109,8 @@ dependencies:
   - xgcm
   # - xlrd  # deprecated, use openpyxl instead
   - zarr
+
+  # Julia Brown's Tutorial
+  - nextflow
+  - kaiju
+  - kraken2
