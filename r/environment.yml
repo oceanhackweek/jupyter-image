@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   # base
-  - python=3.9
+  - python=3.10
   - pangeo-notebook=2023.07.21
   - nb_conda_kernels
   - jupyter-rsession-proxy
