@@ -4,7 +4,7 @@ channels:
 dependencies:
   # base
   - python=3.9
-  - pangeo-notebook=2023.02.11
+  - pangeo-notebook=2023.07.21
   - nb_conda_kernels
   - curl
   - git
@@ -13,6 +13,8 @@ dependencies:
   - vim
   - gh
   - nano
+  - mamba
+  - gh-scoped-creds # github auth via https://docs.2i2c.org/data/git/
   # JupyterLab language packs
   - jupyterlab-language-pack-es-ES
   - jupyterlab-language-pack-pt-BR
@@ -60,7 +62,7 @@ dependencies:
   - ioos_qc
   - ipyleaflet
   - ipywidgets # supplied by pangeo-notebook
-  - jupyter
+  # - jupyter # brings in QT, and JupyterLab only needs jupyter_core
   # - jupyter-rsession-proxy
   # - jupyer-server-proxy # supplied by pangeo-notebook
   - jupyter_contrib_nbextensions
@@ -100,7 +102,8 @@ dependencies:
   # and it may be a good idea to pin it to <2
   - shapely
   - siphon
-  - tensorflow-cpu
+  # - tensorflow-cpu # keras and tensorflow cause our images to become much larger
+  # Which can cause problems with Github Actions running out of storage https://github.com/docker/build-push-action/issues/321
   - unzip
   - windrose
   - xarray
@@ -108,3 +111,19 @@ dependencies:
   - xgcm
   # - xlrd  # deprecated, use openpyxl instead
   - zarr
+  # Tutorial specific, may be dupes to make things explicit
+  - pandas # 23-Myranda
+  - xarray # 23-Myranda
+  - seaborn # 23-Myranda
+  - matplotlib-base # 23-Myranda
+  - owslib # 23-Marty
+  - pandas # 23-Marty
+  - xarray # 23-Marty
+  - cartopy # 23-Marty
+  - holoviews # 23-Marty
+  - hvplot # 23-Marty
+  - geoviews # 23-Marty
+  - netcdf4 # 23-Marty
+  - s3fs # 23-Marty
+  - zarr # 23-Marty
+  - h5netcdf # 23-Marty
