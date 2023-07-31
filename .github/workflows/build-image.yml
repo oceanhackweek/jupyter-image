@@ -96,6 +96,7 @@ jobs:
 
       - name: Docker image sizes
         run: |
+          env
           docker images
           docker images | grep ${{ env.IMAGE_NAME }}
 
