@@ -14,6 +14,7 @@ dependencies:
   - gh
   - nano
   - mamba
+  - gh-scoped-creds # github auth via https://docs.2i2c.org/data/git/
   # JupyterLab language packs
   - jupyterlab-language-pack-es-ES
   - jupyterlab-language-pack-pt-BR
@@ -61,7 +62,7 @@ dependencies:
   - ioos_qc
   - ipyleaflet
   - ipywidgets # supplied by pangeo-notebook
-  - jupyter
+  # - jupyter # brings in QT, and JupyterLab only needs jupyter_core
   # - jupyter-rsession-proxy
   # - jupyer-server-proxy # supplied by pangeo-notebook
   - jupyter_contrib_nbextensions
@@ -114,7 +115,7 @@ dependencies:
   - pandas # 23-Myranda
   - xarray # 23-Myranda
   - seaborn # 23-Myranda
-  - matplotlib # 23-Myranda
+  - matplotlib-base # 23-Myranda
   - owslib # 23-Marty
   - pandas # 23-Marty
   - xarray # 23-Marty
