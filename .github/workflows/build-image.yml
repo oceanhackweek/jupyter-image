@@ -104,6 +104,7 @@ jobs:
 
       - name: Docker image sizes
         run: |
+          docker images
           docker images | grep ${{ env.IMAGE_NAME }}
 
           echo "### Image sizes" >> $GITHUB_STEP_SUMMARY
