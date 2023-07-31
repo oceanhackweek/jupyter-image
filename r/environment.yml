@@ -11,6 +11,7 @@ dependencies:
   - jsonschema-with-format-nongpl
   - gh
   - nano
+  - mamba
   # - curl
   # - git
   # - wget
@@ -55,7 +56,8 @@ dependencies:
   - r-igraph
   - r-irkernel
   - r-jsonlite
-  - r-keras
+  # - r-keras # keras and tensorflow cause our images to become much larger
+  # Which can cause problems with Github Actions running out of storage https://github.com/docker/build-push-action/issues/321
   - r-knitr
   - r-lattice
   - r-leaflet
