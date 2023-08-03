@@ -127,3 +127,6 @@ dependencies:
   - s3fs # 23-Marty
   - zarr # 23-Marty
   - h5netcdf # 23-Marty
+  - scikit-learn # 23-Filipe
+  - scikit-image # 23-Filipe
+  - pillow # 23-Filipe
