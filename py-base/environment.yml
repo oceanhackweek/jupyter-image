@@ -116,6 +116,8 @@ dependencies:
   - xarray # 23-Myranda
   - seaborn # 23-Myranda
   - matplotlib-base # 23-Myranda
+  - argopy # 23-Myranda
+  - cartopy # 23-Myranda
   - owslib # 23-Marty
   - pandas # 23-Marty
   - xarray # 23-Marty
