@@ -1,6 +1,7 @@
 name: OHW-py
 channels:
   - conda-forge
+  - bioconda
 dependencies:
   # base
   - python=3.9
@@ -112,6 +113,13 @@ dependencies:
   # - xlrd  # deprecated, use openpyxl instead
   - zarr
   # Tutorial specific, may be dupes to make things explicit
+  - kaiju # 23-Julia
+  - scikit-learn # 23-Julia
+  - fastq-dl # 23-Julia
+  - seqtk # 23-Julia
+  - pandas # 23-Julia
+  - matplotlib-base # 23-Julia
+  - seaborn # 23-Julia
   - pandas # 23-Myranda
   - xarray # 23-Myranda
   - seaborn # 23-Myranda
