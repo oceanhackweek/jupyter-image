@@ -1,5 +1,5 @@
-#syntax=docker/dockerfile:1.3
-FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
+#syntax=docker/dockerfile:1.7
+FROM ghcr.io/prefix-dev/pixi:0.26.1-jammy@sha256:45d86bb788aaa24d215eff57712f250329486ca8f442b91959bc9ce7ce6e053c
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -10,32 +10,21 @@ ENV CONDA_ENV base
 
 # Output logging faster
 ENV PYTHONUNBUFFERED 1
-# Don't write bytecode
-ENV PYTHONDONTWRITEBYTECODE 1
 
 USER root
 RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
-    && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
+    # && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
     && chown -R ${NB_USER}:${NB_USER} /srv
 
 WORKDIR ${HOME}
-USER ${USER}
-
-COPY ./conda-linux-64.lock /tmp/
-
-RUN --mount=type=cache,id=ohw_py,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
-    conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
-    # micromamba install --name ${CONDA_ENV} --file environment.yml && \
-    find -name '*.a' -delete && \
-    # rm -rf /opt/conda/conda-meta && \
-    rm -rf ${CONDA_DIR}/include && \
-    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
-
-COPY CONDARC ./.condarc
-COPY --chown=${NB_USER} entrypoint.sh /opt/entrypoint.sh
-
-# USER root
-# RUN chown -R jovyan ${CONDA_DIR}
 USER ${NB_USER}
 
-ENTRYPOINT [ "/opt/entrypoint.sh" ]
+COPY ./pixi.toml ./pixi.lock ${HOME}
+
+RUN --mount=type=cache,id=ohw_py,target=/home/jovyan/.cache/rattler/cache,uid=${NB_UID},gid=${NB_UID} \
+    pixi install --frozen -e default
+
+RUN pixi shell-hook --frozen -e default > /srv/shell-hook.sh \
+    && echo 'exec "$@"' >> /srv/shell-hook.sh
+
+ENTRYPOINT ["/bin/bash", "/srv/shell-hook.sh"]
