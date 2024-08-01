@@ -5,21 +5,22 @@ ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/jovyan
 
-ENV CONDA_DIR /srv/conda
-ENV CONDA_ENV base
+ENV PIXI_DIR /srv/pixi_env
 
 # Output logging faster
 ENV PYTHONUNBUFFERED 1
 
 USER root
 RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
-    # && echo ". ${CONDA_DIR}/etc/profile.d/conda.sh ; conda activate ${CONDA_ENV}" > /etc/profile.d/init_conda.sh \
-    && chown -R ${NB_USER}:${NB_USER} /srv
+    && chown -R ${NB_USER}:${NB_USER} /srv \
+    && mkdir -p ${PIXI_DIR} \
+    && chown -R ${NB_USER}:${NB_USER} ${PIXI_DIR}
 
-WORKDIR ${HOME}
+
+WORKDIR ${PIXI_DIR}
 USER ${NB_USER}
 
-COPY ./pixi.toml ./pixi.lock ${HOME}
+COPY ./pixi.toml ./pixi.lock ${PIXI_DIR}/
 
 RUN --mount=type=cache,id=ohw_py,target=/home/jovyan/.cache/rattler/cache,uid=${NB_UID},gid=${NB_UID} \
     pixi install --frozen -e default
@@ -28,3 +29,5 @@ RUN pixi shell-hook --frozen -e default > /srv/shell-hook.sh \
     && echo 'exec "$@"' >> /srv/shell-hook.sh
 
 ENTRYPOINT ["/bin/bash", "/srv/shell-hook.sh"]
+
+WORKDIR ${HOME}
