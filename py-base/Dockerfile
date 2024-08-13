@@ -5,7 +5,7 @@ ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/jovyan
 
-ENV PIXI_DIR /srv/pixi_env
+ENV PIXI_DIR /home
 
 # Output logging faster
 ENV PYTHONUNBUFFERED 1
