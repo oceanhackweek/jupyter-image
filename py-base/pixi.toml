@@ -11,7 +11,7 @@ lab = "jupyter lab --port=8080 --ip=0.0.0.0"
 
 [dependencies]
 python = "3.12.*"
-pangeo-notebook = "2023.7.21.*"
+pangeo-notebook = "2024.08.07.*"
 pixi-kernel = ">=0.4.0,<0.5"
 pooch = ">=1.8.2,<1.9"
 curl = ">=8.7.1,<8.8"
@@ -30,27 +30,24 @@ flox = ">=0.9.8,<0.10"
 opt_einsum = ">=3.3.0,<3.4"
 numbagg = ">=0.8.1,<0.9"
 
-[feature.23-Myranda.dependencies]
+[feature.24-Callum.dependencies]
+numpy = "*"
+cartopy = "*"
 pandas = "*"
-xarray = "*"
+gsw = "*"
+matplotlib = "*"
 seaborn = "*"
-matplotlib-base = "*"
+cmocean = "*"
+cmcrameri = "*"
+tqdm = "*"
 argopy = "*"
-cartopy = "*"
-
-[feature.23-Marty.dependencies]
-owslib = "*"
-pandas = "*"
-xarray = "*"
-cartopy = "*"
-holoviews = "*"
-geoviews = "*"
-
-[feature.23-Filipe.dependencies]
-scikit-learn = "*"
-scikit-image = "*"
-pillow = "*"
+ipyleaflet = "*"
+searvey = "*"
+shapely = "*"
+cftime = "*"
+ioos_qc = "*"
+cf_xarray = "*"
 
 
 [environments]
-default = {features = ["23-Myranda", "23-Marty", "23-Filipe"]}
+default = {features = ["24-Callum"]}
