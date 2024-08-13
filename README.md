@@ -17,7 +17,6 @@ By packaging everything up with Docker we help ensure that code written during t
 
 There are a handful of helpful `make` commands for building and testing images.
 
-- `py-lock` - Generate a new Python lockfile.
 - `py-build` - Build Python Docker container (should regenerate lockfile if `environment.yml` was changed).
 - `py-lab` - Launch JupyterLab for Python image. Watch the terminal output for a `127.0.0.1:8080/...` link with the access token.
 - `r-lock` - Generate a new R lockfile.
@@ -25,6 +24,25 @@ There are a handful of helpful `make` commands for building and testing images.
 - `r-lab` - Launch JupyterLab for R image. Watch the terminal output for a `127.0.0.1:8080/...` link with the access token. Once in JupyterLab, you should be able to launch RStudio.
 
 ## Testing user-generated environments
+
+Our environments are now using pixi to build and manage Conda environments, and pixi-kernel to allow for user installed environments.
+
+The base (default) environment is built up of multiple features, each one corresponding to a specific tutorial. It's fine to overlap dependencies between tutorials, as that makes sure we don't remove them inadvertantly.
+
+To add dependencies for a tutorial, `pixi add -f year-presenter deps...`, for example: `pixi add -f 24-Callum numpy cartopy pandas gsw matplotlib seaborn cmocean cmcrameri tqdm seaborn argopy ipyleaflet searvey shapely cftime ioos_qc cf_xarray`.
+
+Then for a new tutorial, the feature needs to be added to the `features` list for the environment in `pixi.toml`.
+
+```toml
+[environments]
+default = {features = ["24-Callum"]}
+```
+
+Then run `pixi install` and pixi will figure out all the transitive dependencies for multiple deployment environments (Mac and Linux, Windows can be added easily) and try to lock the most common environment for all of them.
+
+If packages are being added to an existing feature that is already part of the default feature, then `pixi install` should not need to be run as the lock file will be updated during `pixi add`.
+
+### Old
 
 Both images use [`nb_conda_kernels` ](https://github.com/Anaconda-Platform/nb_conda_kernels) which allows our users to create their own Conda environments. 
 
