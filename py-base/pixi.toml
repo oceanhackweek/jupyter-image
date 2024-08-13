@@ -1,0 +1,56 @@
+[project]
+name = "OHW-py"
+version = "0.1.0"
+description = "Add a short description here"
+authors = ["Alex Kerney <abk@mac.com>"]
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64", "osx-64", "linux-aarch64"]
+
+[tasks]
+lab = "jupyter lab --port=8080 --ip=0.0.0.0"
+
+[dependencies]
+python = "3.12.*"
+pangeo-notebook = "2023.7.21.*"
+pixi-kernel = ">=0.4.0,<0.5"
+pooch = ">=1.8.2,<1.9"
+curl = ">=8.7.1,<8.8"
+git = ">=2.44.0,<2.45"
+wget = ">=1.21.4,<1.22"
+tar = ">=1.34,<2"
+vim = ">=9.1.611,<9.2"
+gh = ">=2.53.0,<2.54"
+nano = ">=8.1,<9"
+gh-scoped-creds = ">=4.1,<5"
+zarr = ">=2.18.2,<2.19"
+netcdf4 = ">=1.6.5,<1.7"
+s3fs = ">=2023.10.0,<2023.11"
+ipykernel = ">=6.29.5,<6.30"
+flox = ">=0.9.8,<0.10"
+opt_einsum = ">=3.3.0,<3.4"
+numbagg = ">=0.8.1,<0.9"
+
+[feature.23-Myranda.dependencies]
+pandas = "*"
+xarray = "*"
+seaborn = "*"
+matplotlib-base = "*"
+argopy = "*"
+cartopy = "*"
+
+[feature.23-Marty.dependencies]
+owslib = "*"
+pandas = "*"
+xarray = "*"
+cartopy = "*"
+holoviews = "*"
+geoviews = "*"
+
+[feature.23-Filipe.dependencies]
+scikit-learn = "*"
+scikit-image = "*"
+pillow = "*"
+
+
+[environments]
+default = {features = ["23-Myranda", "23-Marty", "23-Filipe"]}

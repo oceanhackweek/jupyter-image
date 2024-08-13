@@ -19,7 +19,7 @@ jobs:
 
   build_push:
     needs: [shortsha]
-    uses: ./.github/workflows/build-image.yml
+    uses: ./.github/workflows/build-pixi-image.yml
     with:
       working_directory: ./py-base
       image_tag: ${{ needs.shortsha.outputs.shortsha }}
