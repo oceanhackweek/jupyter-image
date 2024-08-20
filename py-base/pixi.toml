@@ -69,6 +69,24 @@ boto3 = "*"
 requests = "*"
 aiohttp = "*"
 
+[feature.24-Rich.dependencies]
+ipykernel = "*"
+intake-xarray = "*"
+fsspec = "*"
+s3fs = "*"
+xarray = "*"
+cf_xarray = "*"
+zarr = "*"
+xoak = "*"
+fastparquet = "*"
+dask = "*"
+coiled = "*"
+dask-gateway = "*"
+datashader = "*"
+geoviews = "*"
+hvplot = "*"
+panel = "*"
+
 
 [environments]
-default = {features = ["24-Callum", "24-Jiarui", "24-Ciara"]}
+default = {features = ["24-Callum", "24-Jiarui", "24-Ciara", "24-Rich"]}
