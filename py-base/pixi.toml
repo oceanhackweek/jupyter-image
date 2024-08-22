@@ -89,6 +89,14 @@ geoviews = "*"
 hvplot = "*"
 panel = "*"
 
+[feature.24-Myranda.dependencies]
+argopy = "*"
+cartopy = "*"
+matplotlib = "*"
+pandas = "*"
+scikit-learn = "*"
+numpy = "*"
+
 
 [environments]
-default = {features = ["24-Callum", "24-Jiarui", "24-Ciara", "24-Rich"]}
+default = {features = ["24-Callum", "24-Jiarui", "24-Ciara", "24-Rich", "24-Myranda"]}
