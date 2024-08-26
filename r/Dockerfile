@@ -41,8 +41,10 @@ RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     libapparmor1 \
     libpq5 \
     lsb-release \
-    libclang-dev > /dev/null && \
-    rm -rf /var/lib/apt/lists/*
+    ca-certificates \
+    libclang-dev > /dev/null \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
     locale-gen
