@@ -31,6 +31,7 @@ opt_einsum = ">=3.3.0,<3.4"
 numbagg = ">=0.8.1,<0.9"
 fsspec = ">=2024.6.1"
 gcsfs = ">=2024.6.1,<2024.7"
+jupyterlab-git = ">=0.50.1,<0.51"
 
 [feature.24-Callum.dependencies]
 numpy = "*"
