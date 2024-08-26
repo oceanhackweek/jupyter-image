@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.7
-FROM ghcr.io/prefix-dev/pixi:0.27.1-jammy@sha256:1318ca3b233a685c13aea68c71c377b27963a93c8d7890280c583df49b5281a0
+FROM ghcr.io/prefix-dev/pixi:0.28.1-jammy@sha256:846739b8af52235586f263ca4afadc55b84c24d8ecb291ae49fa123de6b2cea4
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -15,6 +15,11 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
     && chown -R ${NB_USER}:${NB_USER} /srv \
     && mkdir -p ${PIXI_DIR} \
     && chown -R ${NB_USER}:${NB_USER} ${PIXI_DIR}
+
+
+RUN apt-get update \
+    && apt-get install ca-certificates -y \
+    && update-ca-certificates
 
 
 WORKDIR ${PIXI_DIR}
