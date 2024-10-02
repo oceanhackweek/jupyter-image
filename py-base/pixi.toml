@@ -11,8 +11,11 @@ lab = "jupyter lab --port=8080 --ip=0.0.0.0"
 
 [dependencies]
 python = "3.12.*"
+# Use a newer pangeo-notebook version if there is one?
 pangeo-notebook = "2024.08.07.*"
-pixi-kernel = ">=0.4.0,<0.5"
+# 2024-10-2: Removed for OHWes24 Intermediate Workshop,
+# to minimize clutter on JupyterLab
+# pixi-kernel = ">=0.4.0,<0.5"
 pooch = ">=1.8.2,<1.9"
 curl = ">=8.7.1,<8.8"
 git = "*"
@@ -34,72 +37,29 @@ gcsfs = ">=2024.6.1,<2024.7"
 jupyterlab-git = ">=0.50.1,<0.51"
 tldr = ">=3.3.0,<3.4"
 
-[feature.24-Callum.dependencies]
-numpy = "*"
+[feature.ohwes24intermed-Charles.dependencies]
+basemap = "*"
+basemap-data = "*"
 cartopy = "*"
-pandas = "*"
-gsw = "*"
 matplotlib = "*"
-seaborn = "*"
+netcdf4 = "*"
+numpy = "*"
+rasterstats = "*"
+
+[feature.ohwes24intermed-LauraYeray.dependencies]
+cartopy = "*"
+cf_xarray = "*"
 cmocean = "*"
-cmcrameri = "*"
-tqdm = "*"
-argopy = "*"
-ipyleaflet = "*"
-searvey = "*"
-shapely = "*"
-cftime = "*"
-ioos_qc = "*"
-cf_xarray = "*"
-
-[feature.24-Jiarui.dependencies]
-pytorch = ">=2.3.1,<2.4"
-torchvision = ">=0.18.1,<0.19"
-einops = ">=0.8.0,<0.9"
-matplotlib = ">=3.9.1,<3.10"
-numpy = "*"
-
-[feature.24-Ciara.dependencies]
-cfgrib = ">=0.9.14.0"
-eccodes = ">=1.7.1"
-ipykernel = ">=6.29.5"
-numpy = ">=1.24.3"
-matplotlib = ">=3.9.1"
-pandas = ">=2.2.2"
-xarray = "*"
-cartopy = ">=0.22.0"
-boto3 = "*"
-# botocore = ">=1.34.78"
-requests = "*"
-aiohttp = "*"
-
-[feature.24-Rich.dependencies]
-ipykernel = "*"
-intake-xarray = "*"
-fsspec = "*"
-s3fs = "*"
-xarray = "*"
-cf_xarray = "*"
-zarr = "*"
-xoak = "*"
-fastparquet = "*"
-dask = "*"
-coiled = "*"
-dask-gateway = "*"
-datashader = "*"
-geoviews = "*"
-hvplot = "*"
-panel = "*"
-
-[feature.24-Myranda.dependencies]
-argopy = "*"
-cartopy = "*"
+erddapy = "*"
+folium = "*"
 matplotlib = "*"
-pandas = "*"
-scikit-learn = "*"
-numpy = "*"
-xarray = "<2024.3"
+netcdf4 = "*"
+palettable = "*"
+scipy = "*"
+seaborn = "*"
+seawater = "*"
+xarray = "*"
 
 
 [environments]
-default = {features = ["24-Callum", "24-Jiarui", "24-Ciara", "24-Rich", "24-Myranda"]}
+default = {features = ["ohwes24intermed-Charles", "ohwes24intermed-LauraYeray"]}
