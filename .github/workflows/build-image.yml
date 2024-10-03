@@ -117,7 +117,7 @@ jobs:
           cat conda-packages.txt >> $GITHUB_STEP_SUMMARY
 
       - name: Archive Conda Package List
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: conda-packages
           path: conda-packages.txt
