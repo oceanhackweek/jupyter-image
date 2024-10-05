@@ -59,7 +59,15 @@ scipy = "*"
 seaborn = "*"
 seawater = "*"
 xarray = "*"
+papermill = ">=2.6.0,<3"
+
+[feature.ohwes24intermed-Julia.dependencies]
+copernicusmarine = "*"
+
+[feature.ohwes-langpacks.dependencies]
+jupyterlab-language-pack-es-es = "*"
+jupyterlab-language-pack-pt-br = "*"
 
 
 [environments]
-default = {features = ["ohwes24intermed-Charles", "ohwes24intermed-LauraYeray"]}
+default = {features = ["ohwes-langpacks", "ohwes24intermed-Charles", "ohwes24intermed-LauraYeray", "ohwes24intermed-Julia"]}
