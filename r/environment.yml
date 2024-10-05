@@ -55,7 +55,9 @@ dependencies:
   - r-igraph
   - r-irkernel
   - r-jsonlite
-  - r-keras
+  # 2024-10-2: See comment about keras making the image much larger and causing problems
+  # https://github.com/oceanhackweek/jupyter-image/pull/73/files#diff-45d6c92aabe8ba35aad64156cd3081ecd7d416efe1e821204e66829d4db1b298R59
+  # - r-keras
   - r-knitr
   - r-lattice
   - r-leaflet
