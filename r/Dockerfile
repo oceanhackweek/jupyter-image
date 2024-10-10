@@ -75,7 +75,9 @@ RUN --mount=type=cache,id=ohw_r,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UI
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
-# Install BigelowLab dev R libs
+# Install R libs from CRAN and GitHub
+# 2024-10-10: Have there been improvements in install_cran and install_github such that 
+# dependencies, upgrade_dependencies, upgrade could now be set to TRUE or the default?
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
 RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('forecast', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
@@ -87,6 +89,7 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
     Rscript -e "remotes::install_cran('rnoaa', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('satin', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('sfnetworks', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    Rscript -e "remotes::install_cran('smooth', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/ohwobpg', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/rasf', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('BigelowLab/xyzt', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
