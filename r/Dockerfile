@@ -1,6 +1,7 @@
 #syntax=docker/dockerfile:1.3
 # FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
-FROM continuumio/miniconda3:24.9.2-0@sha256:39b820af05f0f9bb986ca145a0d077bbd3bd866256277dd869fefb93bd03cd21
+# 11/14/24: Use a miniconda image that's a bit older than the rstudio-server package; just in case
+FROM continuumio/miniconda3:24.7.1-0@sha256:f37f8c7db26ae7ec0098df530e96c9cde139026b9faf3914800d1522c47a49b1
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -42,10 +43,6 @@ RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     sudo \
     # 11/14/24: should this lib version be udpated?
     libapparmor1 \
-    # 11/14/24: Neither libarchive-dev nor libarchive13 solved the error:
-    # Error while loading conda entry point: conda-libmamba-solver (libarchive.so.20: cannot open shared object file: No such file or directory)
-    # libarchive-dev \
-    libarchive13 \
     libfmt-dev \
     # 11/14/24: should this lib version be udpated?
     libpq5 \
@@ -81,9 +78,11 @@ COPY ./conda-linux-64.lock /tmp/
 
 RUN --mount=type=cache,id=ohw_r,target=${CONDA_DIR}/pkgs,uid=${NB_UID},gid=${NB_UID} \
     # https://github.com/jupyterhub/jupyterhub-deploy-docker/issues/91#issuecomment-525563836
-    conda update -n root conda && \
+    # To avoid libmamba and libarchive channel conflicts, make sure conda-forge is the only channel
+    # https://github.com/conda/conda-libmamba-solver/issues/283#issuecomment-1949560105
+    conda config --add channels conda-forge && \
+    conda update --all && \
     conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
-    # micromamba install --name ${CONDA_ENV} --file environment.yml && \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
     rm -rf ${CONDA_DIR}/include && \
@@ -95,9 +94,10 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 # 2024-10-10: Have there been improvements in install_cran and install_github such that 
 # dependencies, upgrade_dependencies, upgrade could now be set to TRUE or the default?
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
-RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_cran('forecast', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_cran('ggspatial', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+RUN \
+    # -- Dependencies to the target packages, not already installed via the conda environment
+    Rscript -e "remotes::install_cran('PBSMapping', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    # -- Target packages
     Rscript -e "remotes::install_cran('plot.matrix', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('isdparser', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('geonames', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
@@ -117,7 +117,6 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
     Rscript -e "remotes::install_github('hvillalo/echogram', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('hvillalo/periods', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('hvillalo/satin', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_github('kwstat/pals', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('JorGarMol/VoCC', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)"
 
 COPY CONDARC ./.condarc
