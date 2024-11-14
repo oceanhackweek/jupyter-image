@@ -1,5 +1,6 @@
 #syntax=docker/dockerfile:1.3
-FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
+# FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
+FROM continuumio/miniconda3:24.9.2-0@sha256:39b820af05f0f9bb986ca145a0d077bbd3bd866256277dd869fefb93bd03cd21
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -39,7 +40,14 @@ RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     locales \
     psmisc \
     sudo \
+    # 11/14/24: should this lib version be udpated?
     libapparmor1 \
+    # 11/14/24: Neither libarchive-dev nor libarchive13 solved the error:
+    # Error while loading conda entry point: conda-libmamba-solver (libarchive.so.20: cannot open shared object file: No such file or directory)
+    # libarchive-dev \
+    libarchive13 \
+    libfmt-dev \
+    # 11/14/24: should this lib version be udpated?
     libpq5 \
     libssl-dev \
     lsb-release \
