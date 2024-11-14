@@ -40,6 +40,7 @@ RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     sudo \
     libapparmor1 \
     libpq5 \
+    libssl-dev \
     lsb-release \
     ca-certificates \
     libclang-dev > /dev/null \
@@ -51,8 +52,12 @@ RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
 
 # # Set path where R packages are installed
 # # Download and install rstudio manually
+# 11/13/2024: (using $ cat /etc/os-release) 2i2c hub currently runs on Ubuntu jammy (22), not bionic (18).
+# Drilling down to jammy at https://posit.co/download/rstudio-server/, it looks like the latest rstudio-server deb is:
+ENV RSTUDIO_URL https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.09.1-394-amd64.deb
+# # (11/13/2024: The comment below is at from 2022 or earlier) 
 # # Newer one has bug that doesn't work with jupyter-rsession-proxy
-ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
+# ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
 # ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5042-amd64.deb
 RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
     dpkg -i /tmp/rstudio.deb && \

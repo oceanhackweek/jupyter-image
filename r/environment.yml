@@ -3,8 +3,8 @@ channels:
   - conda-forge
 dependencies:
   # base
-  - python=3.9
-  - pangeo-notebook=2023.02.11
+  - python=3.12
+  - pangeo-notebook=2024.08.07
   - nb_conda_kernels
   - jupyter-rsession-proxy
   # 2/24/23: Added jsonschema-with-format-nongpl to address a deployment error
