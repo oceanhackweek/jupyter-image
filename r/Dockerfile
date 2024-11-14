@@ -11,6 +11,7 @@ ENV R_LIBS_USER /opt/r
 
 # Explicitly add littler to PATH
 # See https://github.com/conda-forge/r-littler-feedstock/issues/6
+# 11/14/2024: The littler path appears to be solved already
 ENV PATH ${CONDA_DIR}/lib/R/library/littler/bin:${CONDA_DIR}/bin:$PATH
 
 # Output logging faster
@@ -70,7 +71,9 @@ USER ${USER}
 
 COPY ./conda-linux-64.lock /tmp/
 
-RUN --mount=type=cache,id=ohw_r,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
+RUN --mount=type=cache,id=ohw_r,target=${CONDA_DIR}/pkgs,uid=${NB_UID},gid=${NB_UID} \
+    # https://github.com/jupyterhub/jupyterhub-deploy-docker/issues/91#issuecomment-525563836
+    conda update -n root conda && \
     conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
     # micromamba install --name ${CONDA_ENV} --file environment.yml && \
     find -name '*.a' -delete && \
@@ -110,7 +113,7 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
     Rscript -e "remotes::install_github('JorGarMol/VoCC', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)"
 
 COPY CONDARC ./.condarc
-COPY Rprofile.site /opt/conda/lib/R/etc/
+COPY Rprofile.site ${CONDA_DIR}/lib/R/etc/
 
 ENV PATH /usr/lib/rstudio-server/bin/:${PATH}
 
