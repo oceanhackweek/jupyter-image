@@ -66,6 +66,11 @@ jobs:
       image_ref: ${{ steps.env_var.outputs.image_ref }}
 
     steps:
+    steps:
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
+        # https://github.com/orgs/community/discussions/25678#discussioncomment-5242449
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
