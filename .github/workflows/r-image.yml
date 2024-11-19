@@ -19,7 +19,7 @@ jobs:
 
   build_push:
     needs: [shortsha]
-    uses: ./.github/workflows/build-image.yml
+    uses: ./.github/workflows/build-rocker-image.yml
     with:
       working_directory: ./r
       image_tag: ${{ needs.shortsha.outputs.shortsha }}
