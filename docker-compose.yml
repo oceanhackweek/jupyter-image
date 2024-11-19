@@ -1,12 +1,14 @@
 services:
   py:
     build: ./py-base
+    platform: linux/amd64
     command: jupyter lab --port=8080 --ip=0.0.0.0
     ports:
       - "8080:8080"
 
   r:
     build: ./r
+    platform: linux/amd64
     command: jupyter lab --port=8080 --ip=0.0.0.0
     ports:
       - "8080:8080"
