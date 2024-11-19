@@ -1,0 +1,148 @@
+name: Build and Push Docker Image
+
+on:
+  workflow_call:
+    inputs:
+      working_directory:
+        type: string
+        description: What directory should the image be built from
+        required: true
+      image_name:
+        type: string
+        description: Name of Docker image
+        required: true
+      image_tag:
+        type: string
+        description: Tag for Docker image
+        required: true
+      push_image:
+        type: boolean
+        description: Should the image be pushed to the Github Container Registry
+        required: false
+        default: false
+    secrets:
+      GH_TOKEN:
+        description: Github access token
+        required: false
+      SLACK_WEBHOOK_URL:
+        description: Slack webhook URL to send messages to
+        required: false
+    outputs:
+      image_name:
+        description: Fully qualified image name
+        value: ${{ jobs.build-image.outputs.image_name}}
+      image_ref:
+        description: Docker image reference
+        value: ${{ jobs.build-image.outputs.image_ref }}
+
+  workflow_dispatch:
+    inputs:
+      working_directory:
+        type: string
+        description: What directory should the image be built from
+        required: true
+      image_name:
+        type: string
+        description: Name of Docker image
+        required: true
+      image_tag:
+        type: string
+        description: Tag for Docker image
+        required: true
+      push_image:
+        type: boolean
+        description: Should the image be pushed to the Github Container Registry
+        required: false
+        default: false
+
+jobs:
+  build-image:
+    runs-on: ubuntu-22.04
+    name: Build and push image
+    timeout-minutes: 30
+
+    outputs:
+      image_name: ${{ steps.env_var.outputs.image_name }}
+      image_ref: ${{ steps.env_var.outputs.image_ref }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2.1.6
+        with:
+          path: /tmp/.buildx-cache
+          key: ohw-docker-buildx-${{ inputs.image_name }}-${{ github.sha }}
+          restore-keys: |
+            ohw-docker-buildx-${{ inputs.image_name }}
+
+      - name: Set Job Environment Variables
+        id: env_var
+        run: |
+          SHA7="${GITHUB_SHA::7}"
+          DOCKER_TAG=$SHA7
+          IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/${{ inputs.image_name }}"
+          echo "DOCKER_TAG=${{ inputs.image_tag }}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
+          echo "::set-output name=image_name::${IMAGE_NAME})"
+          echo "::set-output name=image_ref::${DOCKER_TAG})"
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2.6.1
+        with:
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          push: false
+          load: true
+          context: ${{ inputs.working_directory }}
+
+      - name: Docker image sizes
+        run: |
+          docker images | grep ${{ env.IMAGE_NAME }}
+
+          echo "### Image sizes" >> $GITHUB_STEP_SUMMARY
+          docker images | grep ${{ env.IMAGE_NAME }} >> $GITHUB_STEP_SUMMARY
+
+      - name: "Log into GitHub Container Registery"
+        uses: docker/login-action@v1.9.0
+        if: ${{ inputs.push_image}}
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Push Docker Image to GitHub Container Registry
+        if: ${{ inputs.push_image }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+
+      - name: Notify on newly built image
+        if: ${{ inputs.push_image }}
+        uses: slackapi/slack-github-action@v1.18.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        with:
+          payload: |
+            {
+              "text": "Built image ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}. Maybe let 2i2c know?",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Built image `${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}`. Maybe let 2i2c know?"
+                  }
+                }
+              ]
+            }
+
+      - name: Move Docker Cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
