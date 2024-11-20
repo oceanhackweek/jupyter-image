@@ -61,6 +61,10 @@ RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
 # 11/13/2024: (using $ cat /etc/os-release) 2i2c hub currently runs on Ubuntu jammy (22), not bionic (18).
 # Drilling down to jammy at https://posit.co/download/rstudio-server/, it looks like the latest rstudio-server deb is:
 ENV RSTUDIO_URL https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.09.1-394-amd64.deb
+
+# 11/19/2024: Tried Ubuntu focal (20). It didn't make a difference
+# ENV RSTUDIO_URL https://download2.rstudio.org/server/focal/amd64/rstudio-server-2024.09.1-394-amd64.deb
+
 # # (11/13/2024: The comment below is at from 2022 or earlier) 
 # # Newer one has bug that doesn't work with jupyter-rsession-proxy
 # ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
@@ -96,7 +100,7 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
 RUN \
     # -- Dependencies to the target packages, not already installed via the conda environment
-    Rscript -e "remotes::install_cran('PBSMapping', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    Rscript -e "remotes::install_cran('PBSmapping', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     # -- Target packages
     Rscript -e "remotes::install_cran('plot.matrix', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('isdparser', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
