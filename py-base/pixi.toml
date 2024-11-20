@@ -68,6 +68,12 @@ copernicusmarine = "*"
 jupyterlab-language-pack-es-es = "*"
 jupyterlab-language-pack-pt-br = "*"
 
+[feature.ohwes24hackaton-Laura.dependencies]
+parcels = "*"
+
+[feature.ohwes24hackaton-Charles.pypi-dependencies]
+pyeddytracker = "*"
+
 
 [environments]
-default = {features = ["ohwes-langpacks", "ohwes24intermed-Charles", "ohwes24intermed-LauraYeray", "ohwes24intermed-Julia"]}
+default = {features = ["ohwes-langpacks", "ohwes24intermed-Charles", "ohwes24intermed-LauraYeray", "ohwes24intermed-Julia", "ohwes24hackaton-Laura", "ohwes24hackaton-Charles"]}
