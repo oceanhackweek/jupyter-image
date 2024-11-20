@@ -1,5 +1,7 @@
 #syntax=docker/dockerfile:1.3
-FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
+# FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
+# 11/14/24: Use a miniconda image that's a bit older than the rstudio-server package; just in case
+FROM continuumio/miniconda3:24.7.1-0@sha256:f37f8c7db26ae7ec0098df530e96c9cde139026b9faf3914800d1522c47a49b1
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -11,6 +13,7 @@ ENV R_LIBS_USER /opt/r
 
 # Explicitly add littler to PATH
 # See https://github.com/conda-forge/r-littler-feedstock/issues/6
+# 11/14/2024: The littler path appears to be solved already
 ENV PATH ${CONDA_DIR}/lib/R/library/littler/bin:${CONDA_DIR}/bin:$PATH
 
 # Output logging faster
@@ -38,8 +41,12 @@ RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     locales \
     psmisc \
     sudo \
+    # 11/14/24: should this lib version be udpated?
     libapparmor1 \
+    libfmt-dev \
+    # 11/14/24: should this lib version be udpated?
     libpq5 \
+    libssl-dev \
     lsb-release \
     ca-certificates \
     libclang-dev > /dev/null \
@@ -51,8 +58,16 @@ RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
 
 # # Set path where R packages are installed
 # # Download and install rstudio manually
+# 11/13/2024: (using $ cat /etc/os-release) 2i2c hub currently runs on Ubuntu jammy (22), not bionic (18).
+# Drilling down to jammy at https://posit.co/download/rstudio-server/, it looks like the latest rstudio-server deb is:
+ENV RSTUDIO_URL https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.09.1-394-amd64.deb
+
+# 11/19/2024: Tried Ubuntu focal (20). It didn't make a difference
+# ENV RSTUDIO_URL https://download2.rstudio.org/server/focal/amd64/rstudio-server-2024.09.1-394-amd64.deb
+
+# # (11/13/2024: The comment below is at from 2022 or earlier) 
 # # Newer one has bug that doesn't work with jupyter-rsession-proxy
-ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
+# ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
 # ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5042-amd64.deb
 RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
     dpkg -i /tmp/rstudio.deb && \
@@ -65,9 +80,13 @@ USER ${USER}
 
 COPY ./conda-linux-64.lock /tmp/
 
-RUN --mount=type=cache,id=ohw_r,target=/opt/conda/pkgs,uid=${NB_UID},gid=${NB_UID} \
+RUN --mount=type=cache,id=ohw_r,target=${CONDA_DIR}/pkgs,uid=${NB_UID},gid=${NB_UID} \
+    # https://github.com/jupyterhub/jupyterhub-deploy-docker/issues/91#issuecomment-525563836
+    # To avoid libmamba and libarchive channel conflicts, make sure conda-forge is the only channel
+    # https://github.com/conda/conda-libmamba-solver/issues/283#issuecomment-1949560105
+    conda config --add channels conda-forge && \
+    conda update --all && \
     conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
-    # micromamba install --name ${CONDA_ENV} --file environment.yml && \
     find -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
     rm -rf ${CONDA_DIR}/include && \
@@ -79,9 +98,10 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 # 2024-10-10: Have there been improvements in install_cran and install_github such that 
 # dependencies, upgrade_dependencies, upgrade could now be set to TRUE or the default?
 # RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
-RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_cran('forecast', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_cran('ggspatial', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+RUN \
+    # -- Dependencies to the target packages, not already installed via the conda environment
+    Rscript -e "remotes::install_cran('PBSmapping', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
+    # -- Target packages
     Rscript -e "remotes::install_cran('plot.matrix', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('isdparser', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_cran('geonames', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
@@ -101,11 +121,10 @@ RUN Rscript -e "remotes::install_cran('assertthat', dependencies=FALSE, upgrade_
     Rscript -e "remotes::install_github('hvillalo/echogram', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('hvillalo/periods', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('hvillalo/satin', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
-    Rscript -e "remotes::install_github('kwstat/pals', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     Rscript -e "remotes::install_github('JorGarMol/VoCC', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)"
 
 COPY CONDARC ./.condarc
-COPY Rprofile.site /opt/conda/lib/R/etc/
+COPY Rprofile.site ${CONDA_DIR}/lib/R/etc/
 
 ENV PATH /usr/lib/rstudio-server/bin/:${PATH}
 
@@ -113,4 +132,6 @@ ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
+# https://github.com/oceanhackweek/jupyter-image/pull/97#issuecomment-2488105625
+RUN chown -R ${NB_USER} ${HOME}/.cache
 USER ${NB_USER}
