@@ -132,4 +132,6 @@ ENV LD_LIBRARY_PATH=${CONDA_DIR}/lib
 
 # USER root
 # RUN chown -R jovyan ${CONDA_DIR}
+# https://github.com/oceanhackweek/jupyter-image/pull/97#issuecomment-2488105625
+RUN chown -R ${NB_USER} ${HOME}/.cache
 USER ${NB_USER}
