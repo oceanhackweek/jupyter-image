@@ -1,11 +1,9 @@
 #syntax=docker/dockerfile:1.3
-# FROM continuumio/miniconda3:4.12.0@sha256:58b1c7df8d69655ffec017ede784a075e3c2e9feff0fc50ef65300fc75aa45ae
-# 11/14/24: Use a miniconda image that's a bit older than the rstudio-server package; just in case
 FROM continuumio/miniconda3:24.7.1-0@sha256:f37f8c7db26ae7ec0098df530e96c9cde139026b9faf3914800d1522c47a49b1
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
-ENV HOME /home/jovyan
+ENV HOME /home/${NB_USER}
 
 ENV CONDA_DIR /opt/conda
 ENV CONDA_ENV base
@@ -57,18 +55,10 @@ RUN echo "${LC_ALL} UTF-8" > /etc/locale.gen && \
     locale-gen
 
 # # Set path where R packages are installed
-# # Download and install rstudio manually
-# 11/13/2024: (using $ cat /etc/os-release) 2i2c hub currently runs on Ubuntu jammy (22), not bionic (18).
-# Drilling down to jammy at https://posit.co/download/rstudio-server/, it looks like the latest rstudio-server deb is:
+# # Download and install rstudio-server manually
+# Get the url at https://posit.co/download/rstudio-server/:
 ENV RSTUDIO_URL https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.09.1-394-amd64.deb
 
-# 11/19/2024: Tried Ubuntu focal (20). It didn't make a difference
-# ENV RSTUDIO_URL https://download2.rstudio.org/server/focal/amd64/rstudio-server-2024.09.1-394-amd64.deb
-
-# # (11/13/2024: The comment below is at from 2022 or earlier) 
-# # Newer one has bug that doesn't work with jupyter-rsession-proxy
-# ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.07.1-554-amd64.deb
-# ENV RSTUDIO_URL https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5042-amd64.deb
 RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
     dpkg -i /tmp/rstudio.deb && \
     rm /tmp/rstudio.deb
@@ -76,7 +66,6 @@ RUN curl --silent --location --fail ${RSTUDIO_URL} > /tmp/rstudio.deb && \
 USER ${USER}
 
 WORKDIR ${HOME}
-USER ${USER}
 
 COPY ./conda-linux-64.lock /tmp/
 
@@ -95,11 +84,9 @@ RUN --mount=type=cache,id=ohw_r,target=${CONDA_DIR}/pkgs,uid=${NB_UID},gid=${NB_
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
 # Install R libs from CRAN and GitHub
-# 2024-10-10: Have there been improvements in install_cran and install_github such that 
-# dependencies, upgrade_dependencies, upgrade could now be set to TRUE or the default?
-# RUN installGithub.R BigelowLab/rasf BigelowLab/ohwobpg  # not working on GH but works locally :-/
 RUN \
     # -- Dependencies to the target packages, not already installed via the conda environment
+    #    Install dependencies before "target" packages, either in the conda environment or here
     Rscript -e "remotes::install_cran('PBSmapping', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
     # -- Target packages
     Rscript -e "remotes::install_cran('plot.matrix', dependencies=FALSE, upgrade_dependencies=FALSE, upgrade=FALSE)" && \
