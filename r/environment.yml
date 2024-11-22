@@ -41,7 +41,6 @@ dependencies:
   - r-doparallel
   - r-dplyr
   - r-earth
-  - r-rerddap
   - r-fields
   - r-foreach
   - r-forecast
@@ -74,6 +73,7 @@ dependencies:
   - r-mmand
   - r-mapdata
   - r-mapedit
+  - r-mapplots
   - r-mapproj
   - r-maps
   - r-maptools
@@ -104,6 +104,8 @@ dependencies:
   - r-rastervis
   - r-readr
   - r-remotes
+  - r-repmis
+  - r-rerddap
   - r-reshape
   - r-rgdal >=1.5
   - r-rgeos
