@@ -71,9 +71,13 @@ jupyterlab-language-pack-pt-br = "*"
 [feature.ohwes24hackaton-Laura.dependencies]
 parcels = "*"
 
+[feature.ohwes24hackaton-Julia.dependencies]
+earthaccess = "*"
+
 [feature.ohwes24hackaton-Charles.pypi-dependencies]
-pyeddytracker = "*"
+opencv-python-headless = "*"
+pyeddytracker = ">=3.5.0, <4"
 
 
 [environments]
-default = {features = ["ohwes-langpacks", "ohwes24intermed-Charles", "ohwes24intermed-LauraYeray", "ohwes24intermed-Julia", "ohwes24hackaton-Laura", "ohwes24hackaton-Charles"]}
+default = {features = ["ohwes-langpacks", "ohwes24intermed-Charles", "ohwes24intermed-LauraYeray", "ohwes24intermed-Julia", "ohwes24hackaton-Laura", "ohwes24hackaton-Julia", "ohwes24hackaton-Charles"]}
