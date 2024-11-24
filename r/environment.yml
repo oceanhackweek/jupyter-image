@@ -115,6 +115,7 @@ dependencies:
   - r-rnaturalearth
   - r-rnaturalearthdata
   - r-robis
+  - r-rodbc
   - r-rosm
   - r-rpart
   - r-rsqlite
