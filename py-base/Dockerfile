@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.7
-FROM ghcr.io/prefix-dev/pixi:0.28.1-jammy@sha256:846739b8af52235586f263ca4afadc55b84c24d8ecb291ae49fa123de6b2cea4
+FROM ghcr.io/prefix-dev/pixi:0.38.0-jammy@sha256:42d9530a15076a09ba3f64da4d163fdcfe30b728a5221603e2e0a9e9b4d0fae3
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -27,7 +27,7 @@ USER ${NB_USER}
 
 COPY ./pixi.toml ./pixi.lock ${PIXI_DIR}/
 
-RUN --mount=type=cache,id=ohw_py,target=/home/jovyan/.cache/rattler/cache,uid=${NB_UID},gid=${NB_UID} \
+RUN --mount=type=cache,id=ohw_py,target=${HOME}/.cache/rattler/cache,uid=${NB_UID},gid=${NB_UID} \
     pixi install --frozen -e default
 
 RUN pixi shell-hook --frozen -e default > /srv/shell-hook.sh \
