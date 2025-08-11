@@ -122,8 +122,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/freetype-2.13.3-ha770c72_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/freexl-2.0.0-h9dce30a_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/frozenlist-1.7.0-py313h6b9daa2_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.6.1-pyhff2d567_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2025.7.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geographiclib-2.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geojson-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geopandas-1.1.1-pyhd8ed1ab_0.conda
@@ -440,7 +440,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ruamel.yaml-0.18.14-py313h536fd9c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ruamel.yaml.clib-0.2.8-py313h536fd9c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/s2n-1.5.23-h8e187f5_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/s3transfer-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.7.1-py313h06d4379_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/scipy-1.16.0-py313h86fcf2b_0.conda
@@ -651,8 +651,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/freetype-2.13.3-h8af1aa0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/freexl-2.0.0-h82fd2cb_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/frozenlist-1.7.0-py313hf71145f_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.6.1-pyhff2d567_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2025.7.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geographiclib-2.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geojson-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geopandas-1.1.1-pyhd8ed1ab_0.conda
@@ -969,7 +969,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/ruamel.yaml-0.18.14-py313h31d5739_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/ruamel.yaml.clib-0.2.8-py313h31d5739_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/s2n-1.5.23-h00b31db_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/s3transfer-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/scikit-learn-1.7.1-py313haf615d3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/scipy-1.16.0-py313hfdb6400_0.conda
@@ -1168,8 +1168,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/freetype-2.13.3-h694c41f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/freexl-2.0.0-h3183152_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/frozenlist-1.7.0-py313haf29b43_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.6.1-pyhff2d567_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2025.7.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geographiclib-2.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geojson-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geopandas-1.1.1-pyhd8ed1ab_0.conda
@@ -1459,7 +1459,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rsa-4.9-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/ruamel.yaml-0.18.14-py313h63b0ddb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/ruamel.yaml.clib-0.2.8-py313hb558fbc_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/s3transfer-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/scikit-learn-1.7.1-py313hbe0a5c7_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/scipy-1.15.2-py313h7e69c36_0.conda
@@ -1635,8 +1635,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/freetype-2.13.3-hce30654_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/freexl-2.0.0-h3ab3353_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/frozenlist-1.6.0-py313h857e90f_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.6.1-pyhff2d567_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2025.7.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geographiclib-2.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geojson-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/geopandas-1.1.1-pyhd8ed1ab_0.conda
@@ -1926,7 +1926,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rsa-4.9-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ruamel.yaml-0.18.14-py313h90d716c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ruamel.yaml.clib-0.2.8-py313h63a2874_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2024.6.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2025.7.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/s3transfer-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/scikit-learn-1.7.1-py313h595da1d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/scipy-1.16.0-py313h9a24e0a_0.conda
@@ -5287,31 +5287,31 @@ packages:
   license_family: APACHE
   size: 110243
   timestamp: 1746635695532
-- conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.6.1-pyhff2d567_0.conda
-  sha256: 2b8e98294c70d9a33ee0ef27539a8a8752a26efeafa0225e85dc876ef5bb49f4
-  md5: 996bf792cdb8c0ac38ff54b9fde56841
+- conda: https://conda.anaconda.org/conda-forge/noarch/fsspec-2025.7.0-pyhd8ed1ab_0.conda
+  sha256: f734d98cd046392fbd9872df89ac043d72ac15f6a2529f129d912e28ab44609c
+  md5: a31ce802cd0ebfce298f342c02757019
   depends:
-  - python >=3.8
+  - python >=3.9
   license: BSD-3-Clause
   license_family: BSD
-  size: 133141
-  timestamp: 1719515065535
-- conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2024.6.1-pyhd8ed1ab_0.conda
-  sha256: e0444c7fc0d55230b3772deee85869f2e1c797b302a5ed50fffcd5fde90d3bd1
-  md5: 1d23020dbdde70fc8313c2986e599a66
+  size: 145357
+  timestamp: 1752608821935
+- conda: https://conda.anaconda.org/conda-forge/noarch/gcsfs-2025.7.0-pyhd8ed1ab_0.conda
+  sha256: b125a1b7b20d0f85ab677750e357f9ba1971a04862fafed7ccdbc01ed4ea65c0
+  md5: 9947ad636706b59fd2aaa6f90ff2b432
   depends:
   - aiohttp
   - decorator >4.1.2
-  - fsspec 2024.6.1
+  - fsspec 2025.7.0
   - google-auth >=1.2
   - google-auth-oauthlib
   - google-cloud-storage >1.40
-  - python >=3.7
+  - python >=3.9
   - requests
   license: BSD-3-Clause
   license_family: BSD
-  size: 36886
-  timestamp: 1719535378236
+  size: 38937
+  timestamp: 1752671731858
 - conda: https://conda.anaconda.org/conda-forge/noarch/geographiclib-2.0-pyhd8ed1ab_1.conda
   sha256: 933064eaaac79ceadef948223873c433eb5375b8445264cbe569d34035ab4e20
   md5: 8b9328ab4aafb8fde493ab32c5eba731
@@ -15683,20 +15683,18 @@ packages:
   license_family: Apache
   size: 350634
   timestamp: 1753407976110
-- conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2024.6.1-pyhd8ed1ab_0.conda
-  sha256: ce9c6c147b0ad563f3decdb11381a8784b297da0a75d3b6c0ea1fd016df4be6a
-  md5: 2120af180562f945c3fccc39972023da
+- conda: https://conda.anaconda.org/conda-forge/noarch/s3fs-2025.7.0-pyhd8ed1ab_0.conda
+  sha256: 38addc258cf69e39c2df88c4c4995a2108ad782437bbae357b69493216c813db
+  md5: 00502db3bc89fb08171b34ccfcbf8046
   depends:
   - aiobotocore >=2.5.4,<3.0.0
   - aiohttp
-  - fsspec 2024.6.1
-  - python >=3.8
+  - fsspec 2025.7.0
+  - python >=3.9
   license: BSD-3-Clause
   license_family: BSD
-  purls:
-  - pkg:pypi/s3fs?source=hash-mapping
-  size: 32396
-  timestamp: 1719518104827
+  size: 33457
+  timestamp: 1752634552936
 - conda: https://conda.anaconda.org/conda-forge/noarch/s3transfer-0.7.0-pyhd8ed1ab_1.conda
   sha256: c2ae0c88a402e7154999c7917693f024603d9f4c7b0adbb629982e3ff5ea4961
   md5: 6cda17fe7eb0fd45bf8a72cb917c9711
