@@ -92,7 +92,7 @@ jobs:
           echo "::set-output name=image_ref::${DOCKER_TAG})"
 
       - name: Build Docker Image
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v6.18.0
         with:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
