@@ -57,7 +57,7 @@ on:
 
 jobs:
   build-image:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: Build and push image
     timeout-minutes: 30
 
