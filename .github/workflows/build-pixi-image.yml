@@ -137,23 +137,16 @@ jobs:
       - name: Notify on newly built image
         if: ${{ inputs.push_image }}
         uses: slackapi/slack-github-action@v2.1.1
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
         with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
-            {
-              "text": "Built image ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}. Maybe let 2i2c know?",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Built image `${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}`. Maybe let 2i2c know?"
-                  }
-                }
-              ]
-            }
+            text: "Built image ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}. Maybe let 2i2c know?"
+            blocks: 
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: "Built image `${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}`. Maybe let 2i2c know?"
 
       - name: Move Docker Cache
         run: |
