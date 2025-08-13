@@ -138,6 +138,14 @@ jobs:
         if: ${{ inputs.push_image }}
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
 
+      - name: Tag Image with Latest
+        if: ${{ inputs.push_image }}
+        run: docker tag ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} ${{ env.IMAGE_NAME }}:latest
+
+      - name: Push Latest Tag to GitHub Container Registry
+        if: ${{ inputs.push_image }}
+        run: docker push ${{ env.IMAGE_NAME }}:latest
+
       - name: Notify on newly built image
         if: ${{ inputs.push_image }}
         uses: slackapi/slack-github-action@v2.1.1
