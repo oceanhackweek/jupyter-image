@@ -103,6 +103,15 @@ kerchunk = ">=0.2.9,<0.3"
 fastparquet = ">=2024.11.0,<2025"
 arraylake = ">=0.22.0,<0.23"
 
+[feature.25-boris-llm.dependencies]
+python-dotenv = "*"
+langchain = "*"
+langchain-community = "*"
+langchain-openai = "*"
+langchain-huggingface = "*"
+langchain-experimental = "*"
+chromadb = "*"
+
 # [feature.24-Myranda.dependencies]
 # argopy = "*"
 # cartopy = "*"
@@ -118,5 +127,6 @@ default = {features = [
     "25-data-access",
     "25-xarray",
     "25-icechunk",
+    "25-boris-llm",
     # "24-Jiarui", "24-Ciara", "24-Myranda"
     ]}
