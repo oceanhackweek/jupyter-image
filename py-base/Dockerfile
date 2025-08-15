@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.17
-FROM ghcr.io/prefix-dev/pixi:0.51.0-jammy@sha256:337fedcc9810f2c5c36b3ed3b47e7df21cf0a803901c27eabe4dd92e0b2f4fab
+FROM ghcr.io/prefix-dev/pixi:0.52.0-jammy@sha256:02b4c36237d8e782d950218563aba5ed28f329a409e636ee85d49704a71aff18
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
