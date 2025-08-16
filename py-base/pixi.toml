@@ -112,6 +112,10 @@ langchain-huggingface = "*"
 langchain-experimental = "*"
 chromadb = "*"
 
+[feature.marimo.dependencies]
+marimo = ">=0.13.6,<0.15"
+jupyter-marimo-proxy = ">=0.0.4,<0.0.5"
+
 # [feature.24-Myranda.dependencies]
 # argopy = "*"
 # cartopy = "*"
@@ -128,5 +132,6 @@ default = {features = [
     "25-xarray",
     "25-icechunk",
     "25-boris-llm",
+    "marimo",
     # "24-Jiarui", "24-Ciara", "24-Myranda"
     ]}
