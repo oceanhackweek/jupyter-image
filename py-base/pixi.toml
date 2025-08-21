@@ -37,7 +37,7 @@ tldr = ">=3.4.1,<4"
 [feature.25-data-access.dependencies]
 numpy = ">=2.2.6,<3"
 cartopy = ">=0.25.0,<0.26"
-pandas = "<2.2.3"
+pandas = "<2.3.3"
 gsw = ">=3.6.20,<4"
 matplotlib-base = ">=3.10.5,<4"
 seaborn = ">=0.13.2,<0.14"
