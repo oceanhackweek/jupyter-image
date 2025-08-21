@@ -12,6 +12,9 @@ ENV JUPYTERHUB_SERVICE_PREFIX /
 # Output logging faster
 ENV PYTHONUNBUFFERED 1
 
+# Increase marimo output limit for OHW25 proj Riptide Remix
+ENV MARIMO_OUTPUT_MAX_BYTES 20_000_000
+
 USER root
 RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
     && chown -R ${NB_USER}:${NB_USER} /srv \
