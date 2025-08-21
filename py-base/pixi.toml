@@ -145,6 +145,11 @@ paramiko = ">=4.0.0,<5"
 imageio = ">=2.37.0,<3"
 pydub = ">=0.25.1,<0.26"
 
+[feature.earthmover-demo.dependencies]
+rioxarray = ">=0.19.0,<0.20"
+cartopy = ">=0.25.0,<0.26"
+
+
 [environments]
 default = {features = [
     "25-data-access",
@@ -153,5 +158,6 @@ default = {features = [
     "25-boris-llm",
     "marimo",
     "ohw25_proj_RiptideRemix",
+    "earthmover-demo"
     # "24-Jiarui", "24-Ciara", "24-Myranda"
     ]}
