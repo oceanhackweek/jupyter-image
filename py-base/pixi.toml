@@ -145,6 +145,7 @@ ffmpeg-python = ">=0.2.0,<0.3"
 paramiko = ">=4.0.0,<5"
 imageio = ">=2.37.0,<3"
 pydub = ">=0.25.1,<0.26"
+librosa = ">=0.11.0,<0.12"
 
 [feature.earthmover-demo.dependencies]
 rioxarray = ">=0.19.0,<0.20"
