@@ -108,7 +108,7 @@ hdf5plugin = ">=5.1.0,<6"
 imagecodecs = ">=2025.8.2,<2026"
 kerchunk = ">=0.2.9,<0.3"
 fastparquet = ">=2024.11.0,<2025"
-arraylake = ">=0.22.0,<0.23"
+arraylake = ">=0.24.1,<0.25"
 
 [feature.25-boris-llm.dependencies]
 python-dotenv = "*"
