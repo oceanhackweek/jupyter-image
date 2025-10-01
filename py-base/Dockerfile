@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.17
+#syntax=docker/dockerfile:1.19
 FROM ghcr.io/prefix-dev/pixi:0.53.0-jammy@sha256:3a43a1c0663c8b638836162518ba76a465ff7a0296b00f99e61af88bcf442c5a
 
 ENV NB_USER jovyan
