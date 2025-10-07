@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.17
-FROM continuumio/miniconda3:24.7.1-0@sha256:f37f8c7db26ae7ec0098df530e96c9cde139026b9faf3914800d1522c47a49b1
+FROM continuumio/miniconda3:24.11.1-0@sha256:6a66425f001f739d4778dd732e020afeb06175f49478fafc3ec673658d61550b
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
