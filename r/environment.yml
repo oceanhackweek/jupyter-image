@@ -32,6 +32,7 @@ dependencies:
   - r-checkmate
   - r-circstats
   - r-commonmark
+  - r-corrplot
   - r-cowplot
   - r-crul
   - r-dbi
@@ -126,6 +127,8 @@ dependencies:
   - r-scales
   - r-sf >=0.9_5
   - r-sp
+  - r-spatialreg
+  - r-spdep
   - r-splancs
   - r-stars
   - r-statmod
@@ -144,6 +147,7 @@ dependencies:
   - r-udunits2
   - r-urca
   - r-vegan
+  - r-vioplot
   - r-viridis
   - r-vroom
   - r-wdpar
