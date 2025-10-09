@@ -71,7 +71,7 @@ jobs:
         # https://github.com/orgs/community/discussions/25678#discussioncomment-5242449
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
