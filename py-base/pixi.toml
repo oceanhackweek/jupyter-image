@@ -120,7 +120,7 @@ langchain-experimental = "*"
 chromadb = "*"
 
 [feature.marimo.dependencies]
-marimo = ">=0.13.6,<0.15"
+marimo = ">=0.23.16,<0.24"
 jupyter-marimo-proxy = ">=0.0.4,<0.0.5"
 
 # [feature.24-Myranda.dependencies]
