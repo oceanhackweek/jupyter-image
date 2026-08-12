@@ -1,0 +1,28 @@
+{
+  "name": "OHW Python (pixi)",
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "onCreateCommand": "PIXI_VERSION=v0.76.2 bash -c 'curl -fsSL https://pixi.sh/install.sh | bash'",
+  "postCreateCommand": "cd py-base && $HOME/.pixi/bin/pixi install --frozen -e default",
+  "remoteEnv": {
+    "PATH": "${containerEnv:HOME}/.pixi/bin:${containerEnv:PATH}"
+  },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "JupyterLab",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
