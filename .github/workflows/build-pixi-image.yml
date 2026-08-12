@@ -122,6 +122,11 @@ jobs:
           name: conda-packages
           path: conda-packages.txt
 
+      - name: JupyterLab Smoke Test
+        run: |
+          docker run --rm -i ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} \
+            bash -s < ci/smoke-test.sh
+
       - name: "Log into GitHub Container Registery"
         uses: docker/login-action@v3.5.0
         if: ${{ inputs.push_image}}
