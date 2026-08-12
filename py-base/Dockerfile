@@ -23,8 +23,9 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
 
 
 RUN apt-get update \
-    && apt-get install ca-certificates -y \
-    && update-ca-certificates
+    && apt-get install --no-install-recommends -y ca-certificates=20260601~22.04.1 \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR ${PIXI_DIR}

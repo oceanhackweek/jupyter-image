@@ -21,6 +21,11 @@ repos:
     hooks:
       - id: actionlint-docker
 
+  - repo: https://github.com/hadolint/hadolint
+    rev: 2eece55955ced00200be9729e9728cb7dacca505  # frozen: v2.15.1
+    hooks:
+      - id: hadolint-docker
+
 update:
   cooldown_days: 7
   freeze: true
