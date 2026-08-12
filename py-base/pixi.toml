@@ -1,65 +1,83 @@
-[project]
+[workspace]
 name = "OHW-py"
 version = "0.1.0"
 description = "Add a short description here"
 authors = ["Alex Kerney <abk@mac.com>"]
 channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64", "osx-64", "linux-aarch64"]
+exclude-newer = "7d"
 
 [tasks]
 lab = "jupyter lab --port=8080 --ip=0.0.0.0"
 
-[dependencies]
-python = ">=3.12.11,<3.13"
-pangeo-notebook = ">=2025.7.15,<2026"
-pixi-kernel = ">=0.6.6,<0.7"
-pooch = ">=1.8.2,<2"
-curl = ">=8.14.1,<9"
-git = ">=2.49.0,<3"
-wget = ">=1.21.4,<2"
-tar = ">=1.35,<2"
-vim = ">=9.1.1627,<10"
-gh = ">=2.76.2,<3"
-nano = ">=8.5,<9"
-gh-scoped-creds = ">=4.1,<5"
-zarr = ">=3.1.1,<4"
-netcdf4 = ">=1.6.5,<2"
-s3fs = ">=2025.7.0,<2026"
-ipykernel = ">=6.30.1,<7"
-flox = ">=0.10.4,<0.11"
-opt_einsum = ">=3.4.0,<4"
-numbagg = ">=0.9.0,<0.10"
-fsspec = ">=2025.7.0,<2026"
-gcsfs = ">=2025.7.0,<2026"
-jupyterlab-git = ">=0.51.2,<0.52"
-tldr = ">=3.4.1,<4"
-jupyter-resource-usage = ">=1.1.1,<2"
+[environments]
+default = {features = [
+    "26-data-access",
+    "26-xarray",
+    "26-icechunk",
+    # "25-boris-llm",
+    # "marimo",
+    # "ohw25_proj_RiptideRemix",
+    # "earthmover-demo"
+    # "24-Jiarui", "24-Ciara", "24-Myranda"
+    ]}
 
-[feature.25-data-access.dependencies]
-numpy = ">=2.2.6,<3"
+
+[dependencies]
+python = ">=3.13.14,<3.15"
+pangeo-notebook = ">=2025.12.30,<2026"
+pixi-kernel = ">=0.7.1,<0.8"
+pooch = ">=1.9.0,<2"
+curl = ">=8.21.0,<9"
+git = ">=2.55.0,<3"
+wget = ">=1.25.0,<2"
+tar = ">=1.35,<2"
+vim = ">=9.2.785,<10"
+gh = ">=2.97.0,<3"
+nano = ">=9.2,<10"
+gh-scoped-creds = ">=4.1,<5"
+zarr = ">=3.3.0,<4"
+netcdf4 = ">=1.7.4,<2"
+s3fs = ">=2026.6.0,<2027"
+ipykernel = ">=7.3.0,<8"
+flox = ">=0.11.2,<0.12"
+opt_einsum = ">=3.4.0,<4"
+numbagg = ">=0.9.4,<0.10"
+fsspec = ">=2026.6.0,<2027"
+gcsfs = ">=2026.7.0,<2027"
+jupyterlab-git = ">=0.54.1,<0.55"
+tldr = ">=3.4.4,<4"
+jupyter-resource-usage = ">=1.2.1,<2"
+
+[feature.26-data-access.dependencies]
+numpy = ">=2.4.6,<3"
 cartopy = ">=0.25.0,<0.26"
-pandas = "<2.3.3"
-gsw = ">=3.6.20,<4"
-matplotlib-base = ">=3.10.5,<4"
+pandas = ">=3.0.5,<4"
+gsw = ">=3.6.23,<4"
+matplotlib-base = ">=3.11.1,<4"
 seaborn = ">=0.13.2,<0.14"
 cmocean = ">=4.0.3,<5"
-cmcrameri = ">=1.9,<2"
-tqdm = ">=4.67.1,<5"
-argopy = ">=0.1.14,<0.2"
+cmcrameri = ">=1.10,<2"
+tqdm = ">=4.70.0,<5"
+argopy = ">=1.4.0,<2"
 ipyleaflet = ">=0.20.0,<0.21"
-searvey = ">=0.3.16,<0.4"
-shapely = ">=2.1.1,<3"
-cftime = ">=1.6.4,<2"
-ioos_qc = ">=2.2.1,<3"
-cf_xarray = ">=0.10.7,<0.11"
-erddapy = ">=2.2.4,<3"
-gliderpy = ">=1.0.0,<2"
-cf-xarray = ">=0.10.7,<0.11"
-ipywidgets = ">=8.1.7,<9"
-netcdf4 = ">=1.6.5,<2"
-requests = ">=2.32.4,<3"
-scipy = ">=1.16.1,<2"
-traitlets = ">=5.14.3,<6"
+searvey = ">=0.4.1,<0.5"
+shapely = ">=2.1.2,<3"
+cftime = ">=1.6.5,<2"
+ioos_qc = ">=2.3.0,<3"
+cf_xarray = ">=0.11.3,<0.12"
+erddapy = ">=3.3.0,<4"
+gliderpy = ">=2.0.0,<3"
+cf-xarray = ">=0.11.3,<0.12"
+ipywidgets = ">=8.1.8,<9"
+netcdf4 = ">=1.7.4,<2"
+requests = ">=2.34.2,<3"
+scipy = ">=1.18.0,<2"
+traitlets = ">=5.16.1,<6"
+
+[feature.marimo.pypi-dependencies]
+marimo = ">=0.13.6,<0.24"
+marimo-jupyter-extension = ">=0.3.0, <0.4"
 
 # [feature.24-Jiarui.dependencies]
 # pytorch = ">=2.3.1,<2.4"
@@ -82,46 +100,42 @@ traitlets = ">=5.14.3,<6"
 # requests = "*"
 # aiohttp = "*"
 
-[feature.25-xarray.dependencies]
-ipykernel = ">=6.30.1,<7"
+[feature.26-xarray.dependencies]
+ipykernel = ">=7.3.0,<8"
 intake-xarray = ">=2.0.0,<3"
-fsspec = ">=2025.7.0,<2026"
-s3fs = ">=2025.7.0,<2026"
-xarray = ">=2025.6.0,<2026"
-cf_xarray = ">=0.10.7,<0.11"
-zarr = ">=3.1.1,<4"
-xoak = ">=0.1.1,<0.2"
-fastparquet = ">=2024.11.0,<2025"
-dask = ">=2025.7.0,<2026"
-coiled = ">=1.118.1,<2"
+fsspec = ">=2026.6.0,<2027"
+s3fs = ">=2026.6.0,<2027"
+xarray = ">=2025.9.0,<2026"
+cf_xarray = ">=0.11.3,<0.12"
+zarr = ">=3.3.0,<4"
+xoak = ">=0.2.0,<0.3"
+fastparquet = ">=2026.5.0,<2027"
+dask = ">=2025.12.0,<2026"
+coiled = ">=1.135.2,<2"
 dask-gateway = ">=2025.4.0,<2026"
-datashader = ">=0.18.2,<0.19"
-geoviews = ">=1.14.1,<2"
-hvplot = ">=0.12.0,<0.13"
-panel = ">=1.7.5,<2"
+datashader = ">=0.19.1,<0.20"
+geoviews = ">=1.15.1,<2"
+hvplot = ">=0.12.2,<0.13"
+panel = ">=1.9.3,<2"
 
-[feature.25-icechunk.dependencies]
-icechunk = ">=1.1.2,<2"
-virtualizarr = ">=2.1.1,<3"
-h5py = ">=3.13.0,<4"
-hdf5plugin = ">=5.1.0,<6"
-imagecodecs = ">=2025.8.2,<2026"
-kerchunk = ">=0.2.9,<0.3"
-fastparquet = ">=2024.11.0,<2025"
-arraylake = ">=0.22.0,<0.23"
+[feature.26-icechunk.dependencies]
+icechunk = ">=2.1.2,<3"
+virtualizarr = ">=2.7.1,<3"
+h5py = ">=3.16.0,<4"
+hdf5plugin = ">=7.0.0,<8"
+imagecodecs = ">=2026.6.26,<2027"
+kerchunk = ">=0.2.10,<0.3"
+fastparquet = ">=2026.5.0,<2027"
+arraylake = ">=1.2.0,<2"
 
-[feature.25-boris-llm.dependencies]
-python-dotenv = "*"
-langchain = "*"
-langchain-community = "*"
-langchain-openai = "*"
-langchain-huggingface = "*"
-langchain-experimental = "*"
-chromadb = "*"
-
-[feature.marimo.dependencies]
-marimo = ">=0.13.6,<0.15"
-jupyter-marimo-proxy = ">=0.0.4,<0.0.5"
+# [feature.25-boris-llm.dependencies]
+# python-dotenv = "*"
+# langchain = "*"
+# langchain-community = "*"
+# langchain-openai = "*"
+# langchain-huggingface = "*"
+# langchain-experimental = "*"
+# chromadb = "*"
 
 # [feature.24-Myranda.dependencies]
 # argopy = "*"
@@ -133,33 +147,20 @@ jupyter-marimo-proxy = ">=0.0.4,<0.0.5"
 # xarray = "<2024.3"
 
 
-[feature.ohw25_proj_RiptideRemix.dependencies]
-copernicusmarine = ">=2.2.1,<3"
-cartopy = ">=0.25.0,<0.26"
-ipy = ">=1.1,<2"
-obspy = ">=1.4.2,<2"
-shapely = ">=2.1.1,<3"
-ipywidgets = ">=8.1.7,<9"
-ffmpeg = ">=7.1.1,<8"
-ffmpeg-python = ">=0.2.0,<0.3"
-paramiko = ">=4.0.0,<5"
-imageio = ">=2.37.0,<3"
-pydub = ">=0.25.1,<0.26"
-librosa = ">=0.11.0,<0.12"
+# [feature.ohw25_proj_RiptideRemix.dependencies]
+# copernicusmarine = ">=2.2.1,<3"
+# cartopy = ">=0.25.0,<0.26"
+# ipy = ">=1.1,<2"
+# obspy = ">=1.4.2,<2"
+# shapely = ">=2.1.1,<3"
+# ipywidgets = ">=8.1.7,<9"
+# ffmpeg = ">=7.1.1,<8"
+# ffmpeg-python = ">=0.2.0,<0.3"
+# paramiko = ">=4.0.0,<5"
+# imageio = ">=2.37.0,<3"
+# pydub = ">=0.25.1,<0.26"
+# librosa = ">=0.11.0,<0.12"
 
-[feature.earthmover-demo.dependencies]
-rioxarray = ">=0.19.0,<0.20"
-cartopy = ">=0.25.0,<0.26"
-
-
-[environments]
-default = {features = [
-    "25-data-access",
-    "25-xarray",
-    "25-icechunk",
-    "25-boris-llm",
-    "marimo",
-    "ohw25_proj_RiptideRemix",
-    "earthmover-demo"
-    # "24-Jiarui", "24-Ciara", "24-Myranda"
-    ]}
+# [feature.earthmover-demo.dependencies]
+# rioxarray = ">=0.19.0,<0.20"
+# cartopy = ">=0.25.0,<0.26"
