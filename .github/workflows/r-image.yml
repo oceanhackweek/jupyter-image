@@ -13,12 +13,20 @@ on:
       - ".github/workflows/**"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   shortsha:
+    permissions:
+      contents: read
     uses: ./.github/workflows/shortsha.yml
 
   build_push:
     needs: [shortsha]
+    permissions:
+      contents: read
+      packages: write # needed by build-image.yml's deploy job to push to GHCR
     uses: ./.github/workflows/build-image.yml
     with:
       working_directory: ./r
