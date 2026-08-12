@@ -1,0 +1,4 @@
+ignored:
+  # These images intentionally run as named users (jovyan, root) rather than
+  # numeric UIDs; switching would risk breaking downstream permissions/infra.
+  - DL3066

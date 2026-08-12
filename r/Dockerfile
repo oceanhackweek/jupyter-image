@@ -29,25 +29,25 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
 RUN --mount=type=cache,id=ohw_r_apt,target=/var/cache/apt \
     apt-get update -qq --yes > /dev/null && \
     apt-get install --yes --no-install-recommends -qq \
-    curl \
-    git \
-    less \
-    tar \
-    tzdata \
-    vim \
-    wget \
-    locales \
-    psmisc \
-    sudo \
+    curl=7.88.1-10+deb12u15 \
+    git=1:2.39.5-0+deb12u3 \
+    less=590-2.1~deb12u2 \
+    tar=1.34+dfsg-1.2+deb12u1 \
+    tzdata=2026b-0+deb12u1 \
+    vim=2:9.0.1378-2+deb12u2 \
+    wget=1.21.3-1+deb12u1 \
+    locales=2.36-9+deb12u14 \
+    psmisc=23.6-1 \
+    sudo=1.9.13p3-1+deb12u4 \
     # 11/14/24: should this lib version be udpated?
-    libapparmor1 \
-    libfmt-dev \
+    libapparmor1=3.0.8-3 \
+    libfmt-dev=9.1.0+ds1-2 \
     # 11/14/24: should this lib version be udpated?
-    libpq5 \
-    libssl-dev \
-    lsb-release \
-    ca-certificates \
-    libclang-dev > /dev/null \
+    libpq5=15.18-0+deb12u1 \
+    libssl-dev=3.0.20-1~deb12u2 \
+    lsb-release=12.0-1 \
+    ca-certificates=20250419~deb12u1 \
+    libclang-dev=1:14.0-55.7~deb12u1 > /dev/null \
     && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -76,10 +76,10 @@ RUN --mount=type=cache,id=ohw_r,target=${CONDA_DIR}/pkgs,uid=${NB_UID},gid=${NB_
     conda config --add channels conda-forge && \
     conda update --all && \
     conda install --name ${CONDA_ENV} --file /tmp/conda-linux-64.lock && \
-    find -name '*.a' -delete && \
+    find . -name '*.a' -delete && \
     # rm -rf /opt/conda/conda-meta && \
     rm -rf ${CONDA_DIR}/include && \
-    find -name '__pycache__' -type d -exec rm -rf '{}' '+'
+    find . -name '__pycache__' -type d -exec rm -rf '{}' '+'
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
