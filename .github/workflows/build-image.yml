@@ -64,7 +64,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: Build image
     timeout-minutes: 30
 
@@ -159,7 +159,7 @@ jobs:
   deploy:
     needs: build
     if: ${{ inputs.push_image }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: Push image
     timeout-minutes: 15
 
