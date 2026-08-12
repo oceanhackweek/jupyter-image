@@ -44,7 +44,7 @@ If packages are being added to an existing feature that is already part of the d
 
 ### R environment
 
-The R image images use [`nb_conda_kernels` ](https://github.com/Anaconda-Platform/nb_conda_kernels) which allows our users to create their own Conda environments. 
+The R image images use [`nb_conda_kernels` ](https://github.com/Anaconda-Platform/nb_conda_kernels) which allows our users to create their own Conda environments.
 
 This makes it so that we don't have to package everything into the images to start with.
 

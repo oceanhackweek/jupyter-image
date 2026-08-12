@@ -7,7 +7,7 @@ ENV HOME /home/jovyan
 
 ENV PIXI_DIR /home
 # Enable Marimo locally, should be overridden in production
-ENV JUPYTERHUB_SERVICE_PREFIX / 
+ENV JUPYTERHUB_SERVICE_PREFIX /
 
 # Output logging faster
 ENV PYTHONUNBUFFERED 1
