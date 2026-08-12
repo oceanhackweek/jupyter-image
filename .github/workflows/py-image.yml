@@ -6,10 +6,12 @@ on:
       - main
     paths:
       - "py-base/**"
+      - "ci/**"
       - ".github/workflows/**"
   pull_request:
     paths:
       - "py-base/**"
+      - "ci/**"
       - ".github/workflows/**"
   workflow_dispatch:
 
