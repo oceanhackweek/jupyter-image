@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.17
+#syntax=docker/dockerfile:1.26
 FROM ghcr.io/prefix-dev/pixi:0.76.2-jammy@sha256:92a49c557742c9dbfd73d64a7887ea387bad824421265ec083c79da8f8f9d598
 
 ENV NB_USER jovyan
