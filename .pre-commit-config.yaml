@@ -26,6 +26,11 @@ repos:
     hooks:
       - id: hadolint-docker
 
+  - repo: https://github.com/renovatebot/pre-commit-hooks
+    rev: 7fb1c2025be481328210e01d6c672f641af5e197  # frozen: v44.26.0
+    hooks:
+      - id: renovate-config-validator
+
 update:
   cooldown_days: 7
   freeze: true
