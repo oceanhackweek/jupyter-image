@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+      - id: check-merge-conflict
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: 451b56af716f9f0d0c2b816503a3fd0cf8b036fa  # frozen: v1.29.0
+    hooks:
+      - id: zizmor
+        files: "^\\.github"
+        args: [--persona=pedantic]
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: 914e7df21a07ef503a81201c76d2b11c789d3fca  # frozen: v1.7.12
+    hooks:
+      - id: actionlint-docker
+
+update:
+  cooldown_days: 7
+  freeze: true
