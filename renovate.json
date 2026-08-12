@@ -4,5 +4,25 @@
     "config:recommended"
   ],
   "schedule": ["before 5am on tuesday"],
-  "minimumReleaseAge": "7 days"
+  "minimumReleaseAge": "7 days",
+  "packageRules": [
+    {
+      "matchFileNames": ["py-base/pixi.toml"],
+      "matchPackageNames": ["pangeo-notebook", "dask", "dask-gateway"],
+      "groupName": "pangeo-notebook stack",
+      "description": "pangeo-notebook pins an exact pangeo-dask version, which in turn pins exact dask/dask-gateway versions, so bumping any one alone breaks the pixi.lock solve."
+    },
+    {
+      "matchFileNames": ["py-base/pixi.toml"],
+      "matchPackageNames": ["cf_xarray", "cf-xarray"],
+      "groupName": "cf-xarray aliases",
+      "description": "cf_xarray and cf-xarray are the same conda-forge package under two names; they must stay on the same version."
+    },
+    {
+      "matchFileNames": ["py-base/pixi.toml"],
+      "matchPackageNames": ["xarray", "argopy"],
+      "groupName": "xarray/argopy",
+      "description": "argopy pins an upper bound on xarray, so the two need to move together."
+    }
+  ]
 }
