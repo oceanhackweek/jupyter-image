@@ -23,18 +23,20 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
 
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y ca-certificates=20260601~22.04.1 curl=7.81.0-1ubuntu1.26 \
+    && apt-get install --no-install-recommends -y ca-certificates=20260601~22.04.1 curl=7.81.0-1ubuntu1.26 gnupg=2.2.27-3ubuntu2.5 \
     && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN install -d -m 0755 /etc/apt/keyrings \
+    && curl -fsSL https://downloads.claude.ai/keys/claude-code.asc -o /etc/apt/keyrings/claude-code.asc \
+    && echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/stable stable main" \
+       > /etc/apt/sources.list.d/claude-code.list \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y claude-code=2.1.228-1 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${PIXI_DIR}
 USER ${NB_USER}
-
-# Install Claude Code
-# https://github.com/hadolint/hadolint/wiki/DL4006
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -fsSL https://claude.ai/install.sh | bash -s stable
-ENV PATH="${HOME}/.local/bin:${PATH}"
 
 COPY ./pixi.toml ./pixi.lock ${PIXI_DIR}/
 
