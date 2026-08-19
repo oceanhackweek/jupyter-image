@@ -27,9 +27,14 @@ RUN apt-get update \
     && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-
 WORKDIR ${PIXI_DIR}
 USER ${NB_USER}
+
+# Install Claude Code
+# https://github.com/hadolint/hadolint/wiki/DL4006
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -fsSL https://claude.ai/install.sh | bash -s stable
+ENV PATH "${HOME}/.local/bin:${PATH}"
 
 COPY ./pixi.toml ./pixi.lock ${PIXI_DIR}/
 
