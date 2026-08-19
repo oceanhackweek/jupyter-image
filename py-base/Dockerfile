@@ -23,7 +23,7 @@ RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER} \
 
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y ca-certificates=20260601~22.04.1 curl=7.81.0-1ubuntu1.25 \
+    && apt-get install --no-install-recommends -y ca-certificates=20260601~22.04.1 curl=7.81.0-1ubuntu1.26 \
     && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
