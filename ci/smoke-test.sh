@@ -4,11 +4,13 @@
 #   docker run --rm -i ghcr.io/oceanhackweek/python:tag bash -s < ci/smoke-test.sh
 #
 # Verifies the image can serve JupyterLab, create a notebook, and execute code.
-# Override KERNEL_NAME / SMOKE_IMPORTS for non-Python images.
+# Override KERNEL_NAME / SMOKE_IMPORTS for non-Python images, and set SMOKE_MARIMO=0
+# for images without marimo-jupyter-extension.
 set -euo pipefail
 
 KERNEL_NAME="${KERNEL_NAME:-python3}"
 SMOKE_IMPORTS="${SMOKE_IMPORTS:-xarray, zarr, icechunk, cartopy, matplotlib}"
+SMOKE_MARIMO="${SMOKE_MARIMO:-1}"
 
 TOKEN=smoke-test-token
 PORT=8888
@@ -94,5 +96,21 @@ assert any("imports ok" in t for t in texts), f"missing expected output: {texts}
 assert any("execution ok" in t for t in texts), f"missing expected output: {texts}"
 print("notebook executed with expected output")
 PY
+
+echo "== 8. marimo proxy starts and becomes ready =="
+# Regression guard: marimo-jupyter-extension auto-detects `--host ::1` when getaddrinfo
+# reports IPv6 first, but jupyter-server-proxy probes readiness over IPv4, so every
+# /marimo/* request used to 500 after a 60s timeout. See py-base/jupyter_server_config.py.
+if [ "${SMOKE_MARIMO}" = "1" ]; then
+  code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 90 \
+    "${AUTH[@]}" "${BASE}/marimo/health") \
+    || { echo "FAIL: /marimo/health did not complete"; tail -30 "${LAB_LOG}"; exit 1; }
+  case "${code}" in
+    2??|3??) echo "/marimo/health -> ${code}" ;;
+    *) echo "FAIL: /marimo/health returned ${code}"; tail -30 "${LAB_LOG}"; exit 1 ;;
+  esac
+else
+  echo "skipped (SMOKE_MARIMO=${SMOKE_MARIMO})"
+fi
 
 echo "ALL SMOKE TESTS PASSED"

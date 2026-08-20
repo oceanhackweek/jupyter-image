@@ -6,8 +6,6 @@ ENV NB_UID=1000
 ENV HOME=/home/jovyan
 
 ENV PIXI_DIR=/home
-# Enable Marimo locally, should be overridden in production
-ENV JUPYTERHUB_SERVICE_PREFIX=/
 
 # Output logging faster
 ENV PYTHONUNBUFFERED=1
@@ -34,6 +32,11 @@ RUN install -d -m 0755 /etc/apt/keyrings \
     && apt-get update \
     && apt-get install --no-install-recommends -y claude-code=2.1.228-1 \
     && rm -rf /var/lib/apt/lists/*
+
+# Pins marimo's bind address to IPv4 so jupyter-server-proxy's readiness probe can
+# reach it. Applies to `jupyter lab` and `jupyterhub-singleuser` alike, since
+# /etc/jupyter is on the Jupyter config search path.
+COPY ./jupyter_server_config.py /etc/jupyter/jupyter_server_config.py
 
 WORKDIR ${PIXI_DIR}
 USER ${NB_USER}
