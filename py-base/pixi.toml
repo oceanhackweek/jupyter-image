@@ -12,15 +12,24 @@ lab = "jupyter lab --port=8080 --ip=0.0.0.0"
 
 [environments]
 default = {features = [
+    "ai",
     "26-data-access",
     "26-xarray",
     "26-icechunk",
     # "25-boris-llm",
-    # "marimo",
+    "marimo",
     # "ohw25_proj_RiptideRemix",
     # "earthmover-demo"
     # "24-Jiarui", "24-Ciara", "24-Myranda"
     ]}
+
+# The workspace-wide 7d cooldown would reject marimo 0.24.0 (released 2026-08-17), and
+# marimo-jupyter-extension is pinned tightly to marimo. Exempt just these two rather
+# than shifting the cutoff for every other dependency. Root-level table only; pixi has
+# no per-feature equivalent.
+[pypi-exclude-newer]
+marimo = "0d"
+marimo-jupyter-extension = "0d"
 
 
 [dependencies]
@@ -76,8 +85,14 @@ scipy = ">=1.18.0,<2"
 traitlets = ">=5.16.1,<6"
 
 [feature.marimo.pypi-dependencies]
-marimo = ">=0.13.6,<0.24"
+marimo = ">=0.24,<0.25"
 marimo-jupyter-extension = ">=0.3.0, <0.4"
+
+# marimo >=0.23.5 requires jedi<0.20.0. Without this the conda solve pins jedi 0.20.0
+# on linux-aarch64 and marimo silently resolves back to 0.23.4, below the version
+# marimo-jupyter-extension targets. Constrains jedi without depending on it directly.
+[feature.marimo.constraints]
+jedi = "<0.20"
 
 # [feature.24-Jiarui.dependencies]
 # pytorch = ">=2.3.1,<2.4"
@@ -127,6 +142,10 @@ imagecodecs = ">=2026.6.26,<2027"
 kerchunk = ">=0.2.10,<0.3"
 fastparquet = ">=2026.5.0,<2027"
 arraylake = ">=1.2.0,<2"
+
+[feature.ai.dependencies]
+# jupyter-ai = "*"
+# claude-agent-acp = "*"
 
 # [feature.25-boris-llm.dependencies]
 # python-dotenv = "*"
