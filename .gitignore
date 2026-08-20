@@ -105,3 +105,5 @@ venv.bak/
 
 # Mac
 **/.DS_Store
+
+home_mount

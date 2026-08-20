@@ -4,9 +4,13 @@ services:
     command: jupyter lab --port=8080 --ip=0.0.0.0
     ports:
       - "8080:8080"
+    volumes:
+      - ./home_mount:/home/jovyan
 
   r:
     build: ./r
     command: jupyter lab --port=8080 --ip=0.0.0.0
     ports:
       - "8080:8080"
+    volumes:
+      - ./home_mount:/home/jovyan
