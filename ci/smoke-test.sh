@@ -9,7 +9,7 @@
 set -euo pipefail
 
 KERNEL_NAME="${KERNEL_NAME:-python3}"
-SMOKE_IMPORTS="${SMOKE_IMPORTS:-xarray, zarr, icechunk, cartopy, matplotlib}"
+SMOKE_IMPORTS="${SMOKE_IMPORTS:-xarray, zarr, icechunk, cartopy, matplotlib, onc}"
 SMOKE_MARIMO="${SMOKE_MARIMO:-1}"
 
 TOKEN=smoke-test-token

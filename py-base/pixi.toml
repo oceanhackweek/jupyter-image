@@ -16,6 +16,7 @@ default = {features = [
     "26-data-access",
     "26-xarray",
     "26-icechunk",
+    "26-ocean-data",
     # "25-boris-llm",
     "marimo",
     # "ohw25_proj_RiptideRemix",
@@ -142,6 +143,12 @@ imagecodecs = ">=2026.6.26,<2027"
 kerchunk = ">=0.2.10,<0.3"
 fastparquet = ">=2026.5.0,<2027"
 arraylake = ">=1.2.0,<2"
+
+# Ocean Networks Canada's Oceans 3.0 API client. Not packaged on conda-forge, so it
+# comes from PyPI; its runtime deps (requests, python-dateutil, humanize) resolve
+# against the conda environment where they're already present.
+[feature.26-ocean-data.pypi-dependencies]
+onc = ">=2.6.0,<3"
 
 [feature.ai.dependencies]
 # jupyter-ai = "*"
