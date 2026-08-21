@@ -33,10 +33,14 @@ RUN install -d -m 0755 /etc/apt/keyrings \
     && apt-get install --no-install-recommends -y claude-code=2.1.228-1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Pins marimo's bind address to IPv4 so jupyter-server-proxy's readiness probe can
-# reach it. Applies to `jupyter lab` and `jupyterhub-singleuser` alike, since
-# /etc/jupyter is on the Jupyter config search path.
+# Pins the marimo and streamlit bind addresses to IPv4 so jupyter-server-proxy's
+# readiness probe can reach them, and registers the proxied /streamlit/ route. Applies
+# to `jupyter lab` and `jupyterhub-singleuser` alike, since /etc/jupyter is on the
+# Jupyter config search path.
 COPY ./jupyter_server_config.py /etc/jupyter/jupyter_server_config.py
+
+# Placeholder app behind the /streamlit/ launcher tile.
+COPY ./streamlit_welcome.py /opt/ohw/streamlit_welcome.py
 
 WORKDIR ${PIXI_DIR}
 USER ${NB_USER}
