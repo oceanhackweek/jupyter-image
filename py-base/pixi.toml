@@ -19,6 +19,7 @@ default = {features = [
     "26-ocean-data",
     # "25-boris-llm",
     "marimo",
+    "streamlit",
     # "ohw25_proj_RiptideRemix",
     # "earthmover-demo"
     # "24-Jiarui", "24-Ciara", "24-Myranda"
@@ -94,6 +95,18 @@ marimo-jupyter-extension = ">=0.3.0, <0.4"
 # marimo-jupyter-extension targets. Constrains jedi without depending on it directly.
 [feature.marimo.constraints]
 jedi = "<0.20"
+
+# Served through jupyter-server-proxy, which pangeo-notebook already pulls in. The
+# proxied `/streamlit/` route is registered in jupyter_server_config.py; participants
+# serve their own apps over /proxy/absolute/<port>/ instead.
+#
+# From PyPI rather than conda-forge: streamlit needs pydeck, and conda-forge's pydeck
+# carries an `ipywidgets >=7,<8` run constraint that no version of streamlit >=1.61 can
+# satisfy alongside the ipywidgets 8 the tutorials pull in. PyPI's pydeck keeps
+# ipywidgets as an optional extra, so the conflict disappears; the rest of streamlit's
+# runtime deps resolve against the conda packages already in the environment.
+[feature.streamlit.pypi-dependencies]
+streamlit = ">=1.61.1,<2"
 
 # [feature.24-Jiarui.dependencies]
 # pytorch = ">=2.3.1,<2.4"

@@ -4,13 +4,14 @@
 #   docker run --rm -i ghcr.io/oceanhackweek/python:tag bash -s < ci/smoke-test.sh
 #
 # Verifies the image can serve JupyterLab, create a notebook, and execute code.
-# Override KERNEL_NAME / SMOKE_IMPORTS for non-Python images, and set SMOKE_MARIMO=0
-# for images without marimo-jupyter-extension.
+# Override KERNEL_NAME / SMOKE_IMPORTS for non-Python images, and set SMOKE_MARIMO=0 /
+# SMOKE_STREAMLIT=0 for images without marimo-jupyter-extension / streamlit.
 set -euo pipefail
 
 KERNEL_NAME="${KERNEL_NAME:-python3}"
 SMOKE_IMPORTS="${SMOKE_IMPORTS:-xarray, zarr, icechunk, cartopy, matplotlib, onc}"
 SMOKE_MARIMO="${SMOKE_MARIMO:-1}"
+SMOKE_STREAMLIT="${SMOKE_STREAMLIT:-1}"
 
 TOKEN=smoke-test-token
 PORT=8888
@@ -111,6 +112,22 @@ if [ "${SMOKE_MARIMO}" = "1" ]; then
   esac
 else
   echo "skipped (SMOKE_MARIMO=${SMOKE_MARIMO})"
+fi
+
+echo "== 9. streamlit proxy starts and becomes ready =="
+# Regression guard: the /streamlit/ route needs --server.address pinned to IPv4 (the
+# same trap as marimo) and --server.baseUrlPath matching the proxied prefix, or it 500s
+# or serves a blank page. _stcore/health is streamlit's own readiness endpoint, so a
+# reply here means the app booted behind the proxy, not just that the route exists.
+if [ "${SMOKE_STREAMLIT}" = "1" ]; then
+  body=$(curl -s --max-time 120 "${AUTH[@]}" "${BASE}/streamlit/_stcore/health") \
+    || { echo "FAIL: /streamlit/_stcore/health did not complete"; tail -30 "${LAB_LOG}"; exit 1; }
+  case "${body}" in
+    ok*) echo "/streamlit/_stcore/health -> ${body}" ;;
+    *) echo "FAIL: /streamlit/_stcore/health returned '${body}'"; tail -30 "${LAB_LOG}"; exit 1 ;;
+  esac
+else
+  echo "skipped (SMOKE_STREAMLIT=${SMOKE_STREAMLIT})"
 fi
 
 echo "ALL SMOKE TESTS PASSED"

@@ -23,6 +23,37 @@ There are a handful of helpful `make` commands for building and testing images.
 - `r-build` - Build R Docker container (should regenerate lockfile if `environment.yml` was changed).
 - `r-lab` - Launch JupyterLab for R image. Watch the terminal output for a `127.0.0.1:8080/...` link with the access token. Once in JupyterLab, you should be able to launch RStudio.
 
+## Streamlit apps
+
+The Python image ships `streamlit`, served through
+[jupyter-server-proxy](https://jupyter-server-proxy.readthedocs.io/) so that apps are
+reached over the single-user server's own URL. Nothing has to be configured on the hub
+itself, and no extra ports are exposed.
+
+The **Streamlit** tile in the JupyterLab launcher opens `py-base/streamlit_welcome.py`,
+a placeholder app. jupyter-server-proxy launches one fixed command per named route, so
+the tile can't open a participant's own app — to view one, run it from a terminal and
+open it through the proxy:
+
+```bash
+streamlit run app.py --server.port=8501 --server.address=127.0.0.1 --server.headless=true
+```
+
+Then browse to `/user/<name>/proxy/8501/`, trailing slash included.
+
+`/proxy/<port>/` strips its own prefix before forwarding, which is why no
+`--server.baseUrlPath` is needed. The rule is that streamlit's idea of its base path
+has to match the route: pass `--server.baseUrlPath=/user/<name>/proxy/absolute/8501` if
+you use the prefix-preserving `/proxy/absolute/8501/` route instead. Mismatch the two
+and the page loads but stays blank, because streamlit's asset URLs 404.
+
+`--server.address=127.0.0.1` keeps streamlit off IPv6-only binds, which
+jupyter-server-proxy's readiness probe can't reach.
+
+Streamlit comes from PyPI rather than conda-forge: conda-forge's `pydeck` constrains
+`ipywidgets <8`, which can't be satisfied alongside the `ipywidgets` 8 the tutorials
+need. See the comment in `py-base/pixi.toml`.
+
 ## Testing user-generated environments
 
 Our Python environment are now using [pixi](https://pixi.sh/latest/) to build and manage Conda environments, and [pixi-kernel](https://github.com/renan-r-santos/pixi-kernel) to allow for user installed environments.
