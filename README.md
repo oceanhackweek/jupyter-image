@@ -54,6 +54,35 @@ Streamlit comes from PyPI rather than conda-forge: conda-forge's `pydeck` constr
 `ipywidgets <8`, which can't be satisfied alongside the `ipywidgets` 8 the tutorials
 need. See the comment in `py-base/pixi.toml`.
 
+## Launcher branding
+
+The Python image draws an OceanHackWeek banner across the top of the JupyterLab
+launcher, above the tiles, reading the wordmark and the image tag it was built from
+(`python image <short sha>`, or `python image dev` for a local `make py-build`). It's
+there so a participant can say which build they're on without digging through
+`docker inspect`.
+
+It's plain CSS -- `py-base/custom.css` -- loaded through JupyterLab's supported
+`LabApp.custom_css` hook, switched on in `py-base/jupyter_server_config.py`. The tag is
+appended to the stylesheet as a second `:root` block from the `OHW_IMAGE_TAG` build arg,
+which CI fills in with the short sha.
+
+The one fiddly part is *where* the file lives. JupyterLab serves it from
+`ServerApp.static_custom_path`, which is only
+`[~/.jupyter/custom, <jupyter_server package>/static/custom]` -- not the full Jupyter
+config path, so `/etc/jupyter/custom` doesn't work, and the trait isn't configurable.
+The hub mounts a volume over `/home/jovyan`, which hides anything baked into
+`~/.jupyter`, so the Dockerfile installs it into the `jupyter_server` package instead
+and asks the interpreter where that is rather than hardcoding a python version.
+
+A side effect worth knowing: `~/.jupyter/custom` is searched first, so a participant who
+writes their own `~/.jupyter/custom/custom.css` replaces the banner with it. That's a
+reasonable escape hatch, not a bug.
+
+`ci/smoke-test.sh` step 10 covers all of this -- that the route answers 200, that the
+stylesheet carries the wordmark and the right tag, that `/lab` links it, and that the
+`.jp-Launcher-cwd` class the banner hangs off still exists in the built lab assets.
+
 ## Testing user-generated environments
 
 Our Python environment are now using [pixi](https://pixi.sh/latest/) to build and manage Conda environments, and [pixi-kernel](https://github.com/renan-r-santos/pixi-kernel) to allow for user installed environments.

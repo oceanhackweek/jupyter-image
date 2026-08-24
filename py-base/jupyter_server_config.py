@@ -59,3 +59,13 @@ if _streamlit.exists() and _welcome.exists():
             "launcher_entry": {"title": "Streamlit"},
         },
     }
+
+# --- launcher branding ----------------------------------------------------------
+
+# Registers the /custom/(.*) route and makes the page template link custom/custom.css,
+# which carries the OceanHackWeek banner at the top of the launcher. Applies under
+# `jupyterhub-singleuser` as well as `jupyter lab`: jupyterlab is a jupyter_server
+# ExtensionApp, and ExtensionApp._link_jupyter_server_extension() calls
+# update_config(serverapp.config), which carries this file's LabApp section into
+# LabApp's traits. See py-base/custom.css for where the file has to live.
+c.LabApp.custom_css = True

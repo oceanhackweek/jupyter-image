@@ -1,0 +1,80 @@
+/* OceanHackWeek branding for the JupyterLab launcher.
+ *
+ * Served at <base_url>custom/custom.css. Two things have to line up:
+ *   * c.LabApp.custom_css = True in jupyter_server_config.py, which registers the
+ *     /custom/(.*) route and makes the page template link this file.
+ *   * The file has to sit on ServerApp.static_custom_path, whose only entry that
+ *     survives the home volume mounted over /home/jovyan is
+ *     <jupyter_server package>/static/custom/. The Dockerfile installs it there and
+ *     appends the --ohw-image-tag line. /etc/jupyter/custom is *not* on that path.
+ *
+ * Every rule is scoped under .jp-Launcher on purpose: notebook 7 links this same
+ * stylesheet from /tree, where none of these elements exist.
+ *
+ * JupyterLab bundles its own CSS through style-loader, which injects <style> tags at
+ * runtime -- after this file's <link>. A rule here that ties on specificity with a
+ * JupyterLab rule loses, so the one selector that overrides JupyterLab (the cwd <h3>)
+ * repeats its class to win.
+ */
+
+:root {
+  /* Overridden at image build time by a second :root block; see py-base/Dockerfile. */
+  --ohw-image-tag: "dev";
+  --ohw-accent: #0a9396;
+}
+
+/* .jp-Launcher-cwd is always rendered and is the first child of .jp-Launcher-content,
+ * so styling it puts a banner above every launcher section. Making it a flex column
+ * turns ::before/::after into flex items, which is what lets them be ordered ahead of
+ * the existing <h3>. */
+.jp-Launcher-cwd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+
+  /* 5px matches the margin-left JupyterLab gives .jp-Launcher-sectionHeader, so the
+   * banner lines up with the section rules below it. */
+  margin: 0 5px 16px;
+  padding: 12px 16px 10px;
+  border: 1px solid var(--jp-border-color2, #e0e0e0);
+  border-left: 4px solid var(--ohw-accent);
+  border-radius: var(--jp-border-radius, 2px);
+  background: var(--jp-layout-color2, #eee);
+
+  /* The wordmark is one long word; let it break rather than overflow when the launcher
+   * is in a narrow split pane. */
+  overflow-wrap: anywhere;
+}
+
+.jp-Launcher-cwd::before {
+  order: 1;
+  content: "OceanHackWeek";
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size3, 1.44em);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  color: var(--jp-ui-font-color0, #000);
+}
+
+.jp-Launcher-cwd::after {
+  order: 2;
+
+  /* The fallback keeps the declaration valid if the build-time substitution ever goes
+   * missing. Without it an undefined var() drops `content` entirely and the line
+   * disappears silently. */
+  content: "python image " var(--ohw-image-tag, "unknown");
+  margin-top: 3px;
+  font-family: var(--jp-code-font-family);
+  font-size: var(--jp-ui-font-size0, 0.83333em);
+  color: var(--jp-ui-font-color2, rgba(0, 0, 0, 0.54));
+}
+
+/* Keep the current-directory heading, demoted below the wordmark. */
+.jp-Launcher-cwd.jp-Launcher-cwd h3 {
+  order: 3;
+  margin: 10px 0 0;
+  font-size: var(--jp-ui-font-size1);
+  color: var(--jp-ui-font-color2, rgba(0, 0, 0, 0.54));
+}
