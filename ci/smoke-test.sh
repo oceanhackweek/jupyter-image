@@ -21,6 +21,8 @@ LAB_LOG=/tmp/jupyter-lab.log
 
 echo "== 1. CLI and kernelspecs =="
 jupyter lab --version
+# git, gh, and man page through less; a missing pager makes them dump to the terminal.
+command -v less >/dev/null || { echo "FAIL: less is not on PATH"; exit 1; }
 jupyter kernelspec list 2>&1 | grep -qE "^[[:space:]]+${KERNEL_NAME}[[:space:]]" \
   || { echo "FAIL: no ${KERNEL_NAME} kernelspec"; jupyter kernelspec list; exit 1; }
 
