@@ -380,7 +380,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-2.0.9-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-xarray-2.0.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/invoke-3.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-2.3.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos-qc-3.0.0-pyhc364b38_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-3.0.0-hf96e7f1_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipykernel-7.3.0-pyha191276_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipyleaflet-0.20.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipython-9.16.1-pyh53cf698_0.conda
@@ -933,7 +934,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-2.0.9-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-xarray-2.0.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/invoke-3.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-2.3.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos-qc-3.0.0-pyhc364b38_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-3.0.0-hf96e7f1_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipykernel-7.3.0-pyha191276_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipyleaflet-0.20.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipython-9.16.1-pyh53cf698_0.conda
@@ -1246,7 +1248,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-2.0.9-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-xarray-2.0.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/invoke-3.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-2.3.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos-qc-3.0.0-pyhc364b38_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-3.0.0-hf96e7f1_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipykernel-7.3.0-pyh01cf8df_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipyleaflet-0.20.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipython-9.16.1-pyh53cf698_0.conda
@@ -1785,7 +1788,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-2.0.9-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/intake-xarray-2.0.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/invoke-3.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-2.3.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos-qc-3.0.0-pyhc364b38_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-3.0.0-hf96e7f1_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipykernel-7.3.0-pyh01cf8df_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipyleaflet-0.20.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipython-9.16.1-pyh53cf698_0.conda
@@ -12229,10 +12233,11 @@ packages:
   run_exports: {}
   size: 133811
   timestamp: 1775579645825
-- conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-2.3.0-pyhd8ed1ab_0.conda
-  sha256: 26241b0e1177aa159e1687591cc5ba7bd3dfa0344843d730df2c5532ac85f735
-  md5: 95b401ece0aa0694e6fb83342fba0979
+- conda: https://conda.anaconda.org/conda-forge/noarch/ioos-qc-3.0.0-pyhc364b38_0.conda
+  sha256: d926e5e609e331e41cbf189105c23944d3750455cce882c7302f26111a3355ae
+  md5: dc7ad3ac672534c712d658b19ee72acd
   depends:
+  - python >=3.11
   - geographiclib
   - geojson
   - h5netcdf
@@ -12240,18 +12245,29 @@ packages:
   - numpy >=1.14
   - pandas
   - pyparsing
-  - python >=3.10
   - ruamel.yaml
   - scipy
   - shapely
-  - xarray
+  - xarray >2022.3
+  - python
   license: Apache-2.0
   license_family: APACHE
   purls:
   - pkg:pypi/ioos-qc?source=hash-mapping
   run_exports: {}
-  size: 48562
-  timestamp: 1765561427358
+  size: 58582
+  timestamp: 1786964138232
+- conda: https://conda.anaconda.org/conda-forge/noarch/ioos_qc-3.0.0-hf96e7f1_0.conda
+  sha256: 9a3717e2c769209b8d59b536b5a38c9a1e2bdfaae9ed3e4e02bc73d769267ee3
+  md5: 248184f4089d808203ee8163d1393cae
+  depends:
+  - ioos-qc ==3.0.0 pyhc364b38_0
+  license: Apache-2.0
+  license_family: APACHE
+  purls: []
+  run_exports: {}
+  size: 7127
+  timestamp: 1786964138232
 - conda: https://conda.anaconda.org/conda-forge/noarch/ipykernel-7.3.0-pyh01cf8df_0.conda
   sha256: 994d3cb6b9b88a6533f567c50d20f2f6edc40ae3540ce2ee9629492182ab3403
   md5: a1ddab91145f7f06eee769d2f3ac69cd
