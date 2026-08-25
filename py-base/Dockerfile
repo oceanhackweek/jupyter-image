@@ -55,6 +55,35 @@ RUN --mount=type=cache,id=ohw_py,target=${HOME}/.cache/rattler/cache,uid=${NB_UI
 RUN pixi shell-hook --frozen -e default > /srv/shell-hook.sh \
     && echo 'exec "$@"' >> /srv/shell-hook.sh
 
+# --- OceanHackWeek launcher branding --------------------------------------------
+# Kept below the pixi layers: OHW_IMAGE_TAG changes on every commit, and these two
+# layers are cheap to rebuild while `pixi install` is not.
+#
+# custom.css has to land on ServerApp.static_custom_path. That trait is a plain
+# List(Unicode()) with no config=True, so it can't be pointed elsewhere from a config
+# file, and neither can ServerApp.config_dir. Its first entry, ~/.jupyter/custom, is
+# masked by the home volume the hub mounts over /home/jovyan; the second,
+# <jupyter_server package>/static/custom, is baked into the image. /etc/jupyter/custom
+# is *not* on that path.
+COPY ./custom.css /opt/ohw/custom.css
+
+ARG OHW_IMAGE_TAG=dev
+# Exported so the tag is greppable from a terminal and from ci/smoke-test.sh.
+ENV OHW_IMAGE_TAG=${OHW_IMAGE_TAG}
+
+# The tag is appended as a second :root block rather than substituted into the first:
+# the later declaration wins by cascade, so there's no pattern that can drift and
+# silently ship "dev". RUN doesn't go through /srv/shell-hook.sh, so the interpreter is
+# named by path; jupyter_server's location is asked for rather than assumed, since it
+# contains the python version. The closing grep fails the build if either breaks.
+RUN case "${OHW_IMAGE_TAG}" in \
+      "" | *[!a-zA-Z0-9._-]*) echo "refusing unsafe OHW_IMAGE_TAG: ${OHW_IMAGE_TAG}" >&2; exit 1 ;; \
+    esac \
+    && CUSTOM_DIR="$("${PIXI_DIR}/.pixi/envs/default/bin/python" -c 'import jupyter_server, os; print(os.path.join(os.path.dirname(jupyter_server.__file__), "static", "custom"))')" \
+    && install -D -m 0644 /opt/ohw/custom.css "${CUSTOM_DIR}/custom.css" \
+    && printf ':root { --ohw-image-tag: "%s"; }\n' "${OHW_IMAGE_TAG}" >> "${CUSTOM_DIR}/custom.css" \
+    && grep -q -- "--ohw-image-tag: \"${OHW_IMAGE_TAG}\"" "${CUSTOM_DIR}/custom.css"
+
 ENTRYPOINT ["/bin/bash", "/srv/shell-hook.sh"]
 
 WORKDIR ${HOME}

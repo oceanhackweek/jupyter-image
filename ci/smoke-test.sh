@@ -5,13 +5,18 @@
 #
 # Verifies the image can serve JupyterLab, create a notebook, and execute code.
 # Override KERNEL_NAME / SMOKE_IMPORTS for non-Python images, and set SMOKE_MARIMO=0 /
-# SMOKE_STREAMLIT=0 for images without marimo-jupyter-extension / streamlit.
+# SMOKE_STREAMLIT=0 / SMOKE_CUSTOM_CSS=0 for images without marimo-jupyter-extension /
+# streamlit / the OceanHackWeek launcher branding.
 set -euo pipefail
 
 KERNEL_NAME="${KERNEL_NAME:-python3}"
 SMOKE_IMPORTS="${SMOKE_IMPORTS:-xarray, zarr, icechunk, cartopy, matplotlib, onc}"
 SMOKE_MARIMO="${SMOKE_MARIMO:-1}"
 SMOKE_STREAMLIT="${SMOKE_STREAMLIT:-1}"
+SMOKE_CUSTOM_CSS="${SMOKE_CUSTOM_CSS:-1}"
+# Baked into the image by py-base/Dockerfile; defaulted so an image that lacks it
+# fails the check below rather than tripping `set -u`.
+OHW_IMAGE_TAG="${OHW_IMAGE_TAG:-}"
 
 TOKEN=smoke-test-token
 PORT=8888
@@ -130,6 +135,38 @@ if [ "${SMOKE_STREAMLIT}" = "1" ]; then
   esac
 else
   echo "skipped (SMOKE_STREAMLIT=${SMOKE_STREAMLIT})"
+fi
+
+echo "== 10. OHW launcher branding is served =="
+# Regression guard on three separate things: c.LabApp.custom_css is on (without it the
+# route isn't registered at all, and notebook 7's own /custom/custom.css handler answers
+# instead and 500s on the file it can't find); custom.css actually landed on
+# ServerApp.static_custom_path, which the home volume mounted over /home/jovyan rules
+# most candidate locations out of; and the build-time tagging ran. See py-base/custom.css and the branding
+# layers in py-base/Dockerfile.
+if [ "${SMOKE_CUSTOM_CSS}" = "1" ]; then
+  [ -n "${OHW_IMAGE_TAG}" ] \
+    || { echo "FAIL: OHW_IMAGE_TAG is not set in the image"; exit 1; }
+  css=/tmp/ohw-custom.css
+  code=$(curl -s -o "${css}" -w '%{http_code}' "${AUTH[@]}" "${BASE}/custom/custom.css")
+  [ "${code}" = "200" ] \
+    || { echo "FAIL: /custom/custom.css returned ${code}"; tail -30 "${LAB_LOG}"; exit 1; }
+  grep -q 'OceanHackWeek' "${css}" \
+    || { echo "FAIL: no OHW wordmark in custom.css"; exit 1; }
+  grep -q -- "--ohw-image-tag: \"${OHW_IMAGE_TAG}\"" "${css}" \
+    || { echo "FAIL: custom.css is not tagged ${OHW_IMAGE_TAG}"; tail -3 "${css}"; exit 1; }
+  curl -sf "${AUTH[@]}" -o /tmp/ohw-lab.html "${BASE}/lab" \
+    || { echo "FAIL: could not fetch /lab"; tail -30 "${LAB_LOG}"; exit 1; }
+  grep -q 'custom/custom.css' /tmp/ohw-lab.html \
+    || { echo "FAIL: /lab does not link custom/custom.css"; exit 1; }
+  # The banner hangs off .jp-Launcher-cwd. A JupyterLab upgrade that renamed it would
+  # drop the branding without failing anything else above.
+  app_dir=$(jupyter lab path | awk '/Application directory/ {print $NF}')
+  grep -rqF 'jp-Launcher-cwd' "${app_dir}/static" \
+    || { echo "FAIL: jp-Launcher-cwd is gone from the built lab assets"; exit 1; }
+  echo "/custom/custom.css -> ${code}, tagged ${OHW_IMAGE_TAG}"
+else
+  echo "skipped (SMOKE_CUSTOM_CSS=${SMOKE_CUSTOM_CSS})"
 fi
 
 echo "ALL SMOKE TESTS PASSED"

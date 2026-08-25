@@ -109,6 +109,8 @@ jobs:
         with:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+          build-args: |
+            OHW_IMAGE_TAG=${{ env.DOCKER_TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: false
