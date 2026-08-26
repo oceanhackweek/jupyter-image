@@ -17,6 +17,7 @@ default = {features = [
     "26-xarray",
     "26-icechunk",
     "26-ocean-data",
+    "26-underwater-vision",
     # "25-boris-llm",
     "marimo",
     "streamlit",
@@ -164,6 +165,21 @@ arraylake = ">=1.2.0,<2"
 onc = ">=2.6.0,<3"
 
 [feature.ai.dependencies]
+
+[feature.26-underwater-vision.dependencies]
+# torch
+pytorch = ">=2.12.0,<3"
+torchvision = ">=0.27.1,<0.28"
+ultralytics = ">=8.4.121,<9"
+numpy = ">=2.5.2,<3"
+pandas = ">=3.0.5,<4"
+matplotlib = ">=3.11.1,<4"
+pyyaml = ">=6.0.3,<7"
+pillow = ">=12.3.0,<13"
+scikit-learn = ">=1.9.0,<2"
+# opencv-python-headless = "*"
+py-opencv = ">=5.0.0,<6"
+huggingface_hub = ">=1.28.0,<2"
 # jupyter-ai = "*"
 # claude-agent-acp = "*"
 
