@@ -169,7 +169,7 @@ onc = ">=2.6.0,<3"
 [feature.26-underwater-vision.dependencies]
 # torch
 pytorch = ">=2.12.0,<3"
-torchvision = ">=0.27.1,<0.28"
+torchvision = ">=0.28,<0.29"
 ultralytics = ">=8.4.121,<9"
 numpy = ">=2.5.2,<3"
 pandas = ">=3.0.5,<4"
